@@ -31,6 +31,16 @@ class MainActivity : AppCompatActivity() {
         viewModel.navigateToViewDrinks.observe(this, Observer { drinkType ->
             Log.d("test", drinkType.toString())
         })
+
+        viewModel.navigateToFavoriteDrink.observe(this, Observer { drink ->
+            Log.d("favoriteDrink", "favoriteDrink")
+
+        })
+
+        viewModel.navigateToCoffeeBase.observe(this, Observer {
+            Log.d("coffeeBase", "coffeebase")
+
+        })
         replaceFragment(fragment = MainFragment())
 
     }
