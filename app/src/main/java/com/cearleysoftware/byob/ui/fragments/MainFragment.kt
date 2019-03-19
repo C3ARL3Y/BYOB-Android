@@ -22,6 +22,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.toolbar.*
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class MainFragment: Fragment() {
 
     override fun onCreateView(

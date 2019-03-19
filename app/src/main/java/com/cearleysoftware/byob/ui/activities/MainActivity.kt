@@ -8,6 +8,8 @@ import com.cearleysoftware.byob.extensions.replaceFragment
 import com.cearleysoftware.byob.extensions.setDataBindingContentView
 import com.cearleysoftware.byob.ui.fragments.MainFragment
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class MainActivity : AppCompatActivity() {
 
     private var binding: MainActivityBinding? = null

@@ -4,6 +4,8 @@ import android.app.Application
 import com.cearleysoftware.byob.network.api.networkModule
 import org.koin.android.ext.android.startKoin
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class BYOBApplication: Application() {
 
 

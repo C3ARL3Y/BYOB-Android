@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.cearleysoftware.byob.R
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 fun <T : ViewDataBinding> Activity.setDataBindingContentView(@LayoutRes res: Int): T {
     return DataBindingUtil.setContentView(this, res)
 }

@@ -7,6 +7,8 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 fun <T : View> LayoutInflater.inflateTo(
         @LayoutRes layoutRes: Int,
         parent: ViewGroup? = null,
