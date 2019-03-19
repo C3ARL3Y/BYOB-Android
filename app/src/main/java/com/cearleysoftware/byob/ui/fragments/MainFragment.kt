@@ -105,6 +105,16 @@ class MainFragment: Fragment() {
 
             override fun onPageSelected(position: Int) {
                 toolbarTitle.text = adapter.getPageTitle(position)
+                when(position){
+
+                    0 -> bottomNavigation.selectedItemId = R.id.action_picks
+
+                    1 -> bottomNavigation.selectedItemId = R.id.action_customize
+
+                    2 -> bottomNavigation.selectedItemId = R.id.action_favorites
+
+                    3 -> bottomNavigation.selectedItemId = R.id.action_alex
+                }
             }
 
         })
