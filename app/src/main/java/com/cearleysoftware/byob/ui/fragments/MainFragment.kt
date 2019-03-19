@@ -35,7 +35,7 @@ class MainFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViewPager(viewpager)
-        setupBottomNavigation(bottomNavigation, viewpager, toolbarTitle)
+        setupBottomNavigation(bottomNavigation, viewpager)
 
         val mainActivity = safeActivity as MainActivity
         setupToolbar(mainActivity, toolbar, toolbarTitle)
@@ -50,12 +50,11 @@ class MainFragment: Fragment() {
         toolbarTitle.text = resources.getText(R.string.barista_picks)
     }
 
-    private fun setupBottomNavigation(bottomNavigation: BottomNavigationView, viewPager: ViewPager, toolbarTitle: TextView) {
+    private fun setupBottomNavigation(bottomNavigation: BottomNavigationView, viewPager: ViewPager) {
         bottomNavigation.apply {
             itemIconTintList = null
             setOnNavigationItemSelectedListener { menuItem ->
                 val id = menuItem.itemId
-                val title = menuItem.title
                 when(id){
 
                     R.id.action_picks -> viewPager.currentItem = 0
@@ -67,7 +66,6 @@ class MainFragment: Fragment() {
                     R.id.action_alex -> viewPager.currentItem = 3
 
                 }
-                toolbarTitle.text = title
                 true
             }
         }
@@ -96,7 +94,20 @@ class MainFragment: Fragment() {
 
         }
         viewPager.adapter = adapter
-        viewpager.offscreenPageLimit = 1
+        viewPager.offscreenPageLimit = 1
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                toolbarTitle.text = adapter.getPageTitle(position)
+            }
+
+        })
         viewPager.setCurrentItem(0, false)
     }
 
