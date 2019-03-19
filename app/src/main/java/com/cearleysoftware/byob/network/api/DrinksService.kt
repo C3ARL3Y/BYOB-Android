@@ -5,6 +5,8 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
 import io.reactivex.Observable
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 interface DrinksService{
 
     fun addDrink(drink: Drink): Observable<Task<Void>>
