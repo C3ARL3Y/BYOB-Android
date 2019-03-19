@@ -51,23 +51,25 @@ class MainFragment: Fragment() {
     }
 
     private fun setupBottomNavigation(bottomNavigation: BottomNavigationView, viewPager: ViewPager, toolbarTitle: TextView) {
-        bottomNavigation.itemIconTintList = null
-        bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
-            val id = menuItem.itemId
-            val title = menuItem.title
-            when(id){
+        bottomNavigation.apply {
+            itemIconTintList = null
+            setOnNavigationItemSelectedListener { menuItem ->
+                val id = menuItem.itemId
+                val title = menuItem.title
+                when(id){
 
-                R.id.action_picks -> viewPager.currentItem = 0
+                    R.id.action_picks -> viewPager.currentItem = 0
 
-                R.id.action_customize -> viewPager.currentItem = 1
+                    R.id.action_customize -> viewPager.currentItem = 1
 
-                R.id.action_favorites -> viewPager.currentItem = 2
+                    R.id.action_favorites -> viewPager.currentItem = 2
 
-                R.id.action_alex -> viewPager.currentItem = 3
+                    R.id.action_alex -> viewPager.currentItem = 3
 
+                }
+                toolbarTitle.text = title
+                true
             }
-            toolbarTitle.text = title
-            true
         }
     }
 
