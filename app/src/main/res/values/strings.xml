@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BYOB</string>
+    <string name="barista_picks">Barista Picks</string>
+    <string name="customize">Customize</string>
+    <string name="favorites">Favorites</string>
+    <string name="alex_moe">Alex Moe</string>
 </resources>

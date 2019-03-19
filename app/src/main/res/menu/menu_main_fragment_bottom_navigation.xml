@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_picks"
+        android:enabled="true"
+        android:icon="@drawable/picks_tab_icon"
+        android:title="@string/barista_picks"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_customize"
+        android:enabled="true"
+        android:icon="@drawable/customize_tab_icon"
+        android:title="@string/customize"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_favorites"
+        android:enabled="true"
+        android:icon="@drawable/favorites_tab_icon"
+        android:title="@string/favorites"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_alex"
+        android:enabled="true"
+        android:icon="@drawable/alex_tab_icon"
+        android:title="@string/alex_moe"
+        app:showAsAction="ifRoom" />
+
+</menu>
