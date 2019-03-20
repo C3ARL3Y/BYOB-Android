@@ -37,9 +37,11 @@ class CustomizeFragment: Fragment() {
         binding.mainViewModel = mainViewModel
         if (mainViewModel.hasCurrentDrink){
             currentDrinkButton.visibility = View.VISIBLE
+            customizeDrinkButton.text = resources.getText(R.string.override_drink)
         }
         else{
             currentDrinkButton.visibility = View.INVISIBLE
+            customizeDrinkButton.text = resources.getText(R.string.customize_drink)
         }
     }
 }

@@ -63,6 +63,7 @@
             android:layout_gravity="center_horizontal">
 
             <Button
+                android:id="@+id/customizeDrinkButton"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
                 android:layout_marginStart="48dp"
