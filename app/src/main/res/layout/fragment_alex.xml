@@ -44,6 +44,7 @@
                     android:src="@drawable/knine"/>
 
                 <EditText
+                    android:id="@+id/emailView"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginStart="32dp"
@@ -59,6 +60,7 @@
                     android:hint="@string/email"/>
 
                 <EditText
+                    android:id="@+id/passwordView"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:paddingStart="15dp"
@@ -74,6 +76,7 @@
                     android:hint="@string/password"/>
 
                 <Button
+                    android:id="@+id/login"
                     android:layout_width="180dp"
                     android:layout_height="72dp"
                     style="@style/ButtonAppearance"

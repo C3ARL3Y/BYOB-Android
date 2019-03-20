@@ -9,6 +9,7 @@ import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.databinding.FragmentAlexBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
+import kotlinx.android.synthetic.main.fragment_alex.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
@@ -23,8 +24,8 @@ class AlexFragment: Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        login.setOnClickListener {  }
     }
 }
