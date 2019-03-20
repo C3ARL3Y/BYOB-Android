@@ -9,6 +9,7 @@ import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.databinding.FragmentCustomizeBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
+import kotlinx.android.synthetic.main.fragment_customize.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
@@ -34,5 +35,11 @@ class CustomizeFragment: Fragment() {
     private fun setupUI() {
 
         binding.mainViewModel = mainViewModel
+        if (mainViewModel.hasCurrentDrink){
+            currentDrinkButton.visibility = View.VISIBLE
+        }
+        else{
+            currentDrinkButton.visibility = View.INVISIBLE
+        }
     }
 }

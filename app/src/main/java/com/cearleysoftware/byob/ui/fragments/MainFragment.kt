@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.extensions.inflateTo
@@ -18,13 +19,17 @@ import com.cearleysoftware.byob.ui.fragments.alex.AlexFragment
 import com.cearleysoftware.byob.ui.fragments.customize.CustomizeFragment
 import com.cearleysoftware.byob.ui.fragments.favorites.FavoritesFragment
 import com.cearleysoftware.byob.ui.fragments.picks.BaristaPicksFragment
+import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.toolbar.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
 
 class MainFragment: Fragment() {
+
+    private val mainViewModel by sharedViewModel<MainViewModel>()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -48,6 +53,9 @@ class MainFragment: Fragment() {
             setDisplayHomeAsUpEnabled(false)
         }
         toolbarTitle.text = resources.getText(R.string.barista_picks)
+        mainViewModel.hasFavoriteDrinkToSave.observe(this, Observer { hasDrinkToSave ->
+            addToFavoriteButton.visibility = if(hasDrinkToSave) View.VISIBLE else View.GONE
+        })
     }
 
     private fun setupBottomNavigation(bottomNavigation: BottomNavigationView, viewPager: ViewPager) {
