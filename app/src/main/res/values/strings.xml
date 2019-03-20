@@ -4,4 +4,6 @@
     <string name="customize">Customize</string>
     <string name="favorites">Favorites</string>
     <string name="alex_moe">Alex Moe</string>
+    <string name="override_drink">Tap To Override Current Drink</string>
+    <string name="customize_drink">Tap To Begin Customizing Your Drink</string>
 </resources>
