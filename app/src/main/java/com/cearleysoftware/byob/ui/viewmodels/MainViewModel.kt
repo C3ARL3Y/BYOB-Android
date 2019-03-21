@@ -27,16 +27,8 @@ class MainViewModel: ViewModel() {
     val hasCurrentDrink: Boolean
         get() = currentFavoriteDrink != null
 
-    fun hotDrinksClicked(){
-        _navigateToViewDrinks.value = Constants.HOT_DRINKS
-    }
-
-    fun icedDrinksClicked(){
-        _navigateToViewDrinks.value = Constants.ICED_DRINKS
-    }
-
-    fun teasClicked(){
-        _navigateToViewDrinks.value = Constants.TEAS
+    fun baristaPicksButtonClicked(drinkType: Int){
+        _navigateToViewDrinks.value = drinkType
     }
 
     fun currentDrinkClicked(){

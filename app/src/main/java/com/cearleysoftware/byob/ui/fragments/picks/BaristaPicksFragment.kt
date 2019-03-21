@@ -6,16 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cearleysoftware.byob.R
+import com.cearleysoftware.byob.constants.Constants
 import com.cearleysoftware.byob.databinding.FragmentBaristaPicksBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
+import kotlinx.android.synthetic.main.fragment_barista_picks.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
 
 class BaristaPicksFragment: Fragment() {
 
-    protected val mainViewModel by sharedViewModel<MainViewModel>()
+    private val mainViewModel by sharedViewModel<MainViewModel>()
 
     private lateinit var binding: FragmentBaristaPicksBinding
 
@@ -33,6 +35,9 @@ class BaristaPicksFragment: Fragment() {
     }
 
     private fun setupUI() {
+        hotDrinks.setOnClickListener { mainViewModel.baristaPicksButtonClicked(Constants.HOT_DRINKS) }
+        icedDrinks.setOnClickListener { mainViewModel.baristaPicksButtonClicked(Constants.ICED_DRINKS) }
+        teas.setOnClickListener { mainViewModel.baristaPicksButtonClicked(Constants.TEAS) }
         binding.viewModel = mainViewModel
     }
 }
