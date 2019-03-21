@@ -46,31 +46,31 @@
                 </LinearLayout>
 
                 <ImageButton
+                    android:id="@+id/hotDrinks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/hot_drinks_label"
                     android:layout_gravity="center_horizontal"
                     android:background="?attr/selectableItemBackground"
-                    android:layout_margin="30dp"
-                    android:onClick="@{() -> viewModel.hotDrinksClicked()}"/>
+                    android:layout_margin="30dp"/>
 
                 <ImageButton
+                    android:id="@+id/icedDrinks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/iced_drinks_label"
                     android:background="?attr/selectableItemBackground"
-                    android:layout_margin="30dp"
-                    android:onClick="@{() -> viewModel.icedDrinksClicked()}"/>
+                    android:layout_margin="30dp"/>
 
                 <ImageButton
+                    android:id="@+id/teas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="30dp"
                     android:src="@drawable/teas_label"
-                    android:background="?attr/selectableItemBackground"
-                    android:onClick="@{() -> viewModel.teasClicked()}"/>
+                    android:background="?attr/selectableItemBackground"/>
 
             </LinearLayout>
 
