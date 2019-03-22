@@ -6,15 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.constants.Constants
+import com.cearleysoftware.byob.constants.DrinkTypes
 import com.cearleysoftware.byob.databinding.FragmentCreateDrinkBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
 import com.cearleysoftware.byob.models.Drink
+import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
+import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
+import kotlinx.android.synthetic.main.fragment_create_drink.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class CreateDrinkFragment: Fragment() {
 
     private lateinit var binding: FragmentCreateDrinkBinding
+    private val createDrinkViewModel by sharedViewModel<CreateDrinkViewModel> ()
+    private val mainViewModel by sharedViewModel<MainViewModel>()
+
     private var drink: Drink? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +45,22 @@ class CreateDrinkFragment: Fragment() {
     }
 
     private fun setupUI() {
+
+        nutrientsButton.setOnClickListener {  }
+        stepsButton.setOnClickListener {  }
+        backButton.setOnClickListener {  }
+        saveButton.setOnClickListener {
+            createDrinkViewModel.saveDrink(
+                    drink?.id?: "",
+                nameView.text.toString(),
+                discriptionView.text.toString(),
+                    drink?.type?: DrinkTypes.HOT_DRINKS
+            )
+        }
+
+        createDrinkViewModel.onDrinkSaved.observe(this, Observer {
+            mainViewModel.popBackStack()
+        })
         binding.drink = drink
     }
 

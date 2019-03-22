@@ -7,4 +7,8 @@ val viewModelsModule = module {
     viewModel {
         MainViewModel()
     }
+
+    viewModel {
+        CreateDrinkViewModel(get())
+    }
 }

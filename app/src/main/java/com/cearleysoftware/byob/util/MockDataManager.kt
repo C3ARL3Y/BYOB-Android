@@ -13,7 +13,7 @@ object MockDataManager {
         steps.add("second")
         steps.add("third")
         for (i in 0 until 19){
-            val drink = Drink(i,
+            val drink = Drink("abc",
                     "drink $i",
                     "https://fetch-test2.s3.us-west-2.amazonaws.com/a22cdda0-3600-11e9-b713-9d2bb708b98d.jpeg",
                     "description $i",

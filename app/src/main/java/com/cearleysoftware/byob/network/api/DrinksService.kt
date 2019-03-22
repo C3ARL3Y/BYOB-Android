@@ -10,7 +10,7 @@ import io.reactivex.Observable
 
 interface DrinksService{
 
-    fun addDrink(drink: Drink): Observable<Task<Void>>
+    fun addDrink(drink: Drink): Observable<Drink>
 
     fun updateDrink(drink: Drink): Observable<Task<Void>>
 
@@ -21,8 +21,10 @@ interface DrinksService{
 
 class DrinkServiceImplementation(database: DatabaseReference): DrinksService{
 
-    override fun addDrink(drink: Drink): Observable<Task<Void>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun addDrink(drink: Drink): Observable<Drink> {
+        return Observable.create { emitter ->
+            emitter.onNext(drink)
+        }
     }
 
     override fun updateDrink(drink: Drink): Observable<Task<Void>> {
