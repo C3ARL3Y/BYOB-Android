@@ -8,19 +8,20 @@ import com.cearleysoftware.byob.models.Nutrients
 
 @BindingAdapter("nutrients")
 fun setNutrients(view: TextView, nutrients: Nutrients) {
-    view.text = "Calories: ${nutrients.calories}\n\n" +
+    val nutrientsString = "Calories: ${nutrients.calories}\n\n" +
             "Protein: ${nutrients.protein}\n\n" +
             "Carbs: ${nutrients.carbs}\n\n" +
             "Fats: ${nutrients.fats}\n\n" +
             "Sugar: ${nutrients.sugar}\n\n" +
             "Caffeine: ${nutrients.caffeine}"
+    view.text = nutrientsString
 }
 
 @BindingAdapter("steps")
 fun setSteps(view: TextView, steps: List<String>) {
     var stepsString = ""
-    for (step in steps){
-        stepsString += step + "\n\n"
+    steps.forEachIndexed { index, step ->
+        stepsString += "Step ${index + 1}: $step\n\n"
     }
     view.text = stepsString.trim()
 }
