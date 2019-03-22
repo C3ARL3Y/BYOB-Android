@@ -21,4 +21,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="search_hint">drink name...</string>
+    <string name="done">Done</string>
+    <string name="new_drink">New Drink</string>
 </resources>

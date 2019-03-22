@@ -1,12 +1,12 @@
 package com.cearleysoftware.byob.ui.viewmodels
 
-import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.cearleysoftware.byob.constants.Constants
 import com.cearleysoftware.byob.models.Drink
 import com.cearleysoftware.byob.util.SingleLiveEvent
+
+//  Copyright © 2019 Cearley Software. All rights reserved.
 
 class MainViewModel: ViewModel() {
 
@@ -14,12 +14,20 @@ class MainViewModel: ViewModel() {
     private var customizableDrink: Drink? = null
 
 
-    val navigateToViewDrinks: LiveData<Int> get() = _navigateToViewDrinks
-    private val _navigateToViewDrinks = MutableLiveData<Int>()
+    val navigateToViewDrinks: LiveData<String> get() = _navigateToViewDrinks
+    private val _navigateToViewDrinks = MutableLiveData<String>()
+
+    val navigateToDrinkFromPicks: LiveData<Drink> get() = _navigateToDrinkFromPicks
+    private val _navigateToDrinkFromPicks = MutableLiveData<Drink>()
+
+    val navigateToCreateDrink: LiveData<Drink?> get() = _navigateToCreateDrink
+    private val _navigateToCreateDrink = MutableLiveData<Drink?>()
 
     val navigateToFavoriteDrink = SingleLiveEvent<Unit>()
 
     val navigateToCoffeeBase = SingleLiveEvent<Unit>()
+
+    val popBackStack = SingleLiveEvent<Unit>()
 
     private val _hasFavoriteDrinkToSave = MutableLiveData<Boolean>()
     val hasFavoriteDrinkToSave: LiveData<Boolean> get() = _hasFavoriteDrinkToSave
@@ -27,7 +35,7 @@ class MainViewModel: ViewModel() {
     val hasCurrentDrink: Boolean
         get() = currentFavoriteDrink != null
 
-    fun baristaPicksButtonClicked(drinkType: Int){
+    fun baristaPicksButtonClicked(drinkType: String){
         _navigateToViewDrinks.value = drinkType
     }
 
@@ -43,5 +51,17 @@ class MainViewModel: ViewModel() {
             customizableDrink = null
         }
         navigateToCoffeeBase.call()
+    }
+
+    fun drinkFromPicksClicked(drink: Drink) {
+        _navigateToDrinkFromPicks.value = drink
+    }
+
+    fun popBackStack() {
+        popBackStack.call()
+    }
+
+    fun navigateToCreateDrink(drink: Drink?) {
+        _navigateToCreateDrink.value = drink
     }
 }

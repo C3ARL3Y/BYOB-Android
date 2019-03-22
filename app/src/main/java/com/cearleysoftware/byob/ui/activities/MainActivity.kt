@@ -6,9 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.databinding.MainActivityBinding
+import com.cearleysoftware.byob.extensions.popBackStack
 import com.cearleysoftware.byob.extensions.replaceFragment
 import com.cearleysoftware.byob.extensions.setDataBindingContentView
 import com.cearleysoftware.byob.ui.fragments.MainFragment
+import com.cearleysoftware.byob.ui.fragments.picks.CreateDrinkFragment
+import com.cearleysoftware.byob.ui.fragments.picks.DrinkFragment
+import com.cearleysoftware.byob.ui.fragments.picks.ViewDrinksFragment
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,17 +33,29 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupUI() {
         viewModel.navigateToViewDrinks.observe(this, Observer { drinkType ->
-            Log.d("test", drinkType.toString())
+            replaceFragment(fragment = ViewDrinksFragment.newInstance(drinkType), addToBackStack = true)
         })
 
-        viewModel.navigateToFavoriteDrink.observe(this, Observer { drink ->
+        viewModel.navigateToDrinkFromPicks.observe(this, Observer { drink ->
+            replaceFragment(fragment = DrinkFragment.newInstance(drink), addToBackStack = true)
+        })
+
+        viewModel.navigateToCreateDrink.observe(this, Observer { drink ->
+            replaceFragment(fragment = CreateDrinkFragment.newInstance(drink), addToBackStack = true)
+        })
+
+        viewModel.navigateToFavoriteDrink.observe(this, Observer { drinkType ->
             Log.d("favoriteDrink", "favoriteDrink")
 
         })
 
-        viewModel.navigateToCoffeeBase.observe(this, Observer {
+        viewModel.navigateToCoffeeBase.observe(this, Observer { drinkType ->
             Log.d("coffeeBase", "coffeebase")
 
+        })
+
+        viewModel.popBackStack.observe(this, Observer {
+            popBackStack()
         })
         replaceFragment(fragment = MainFragment())
 

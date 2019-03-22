@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.constants.Constants
+import com.cearleysoftware.byob.constants.DrinkTypes
 import com.cearleysoftware.byob.databinding.FragmentBaristaPicksBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
@@ -35,9 +36,9 @@ class BaristaPicksFragment: Fragment() {
     }
 
     private fun setupUI() {
-        hotDrinks.setOnClickListener { mainViewModel.baristaPicksButtonClicked(Constants.HOT_DRINKS) }
-        icedDrinks.setOnClickListener { mainViewModel.baristaPicksButtonClicked(Constants.ICED_DRINKS) }
-        teas.setOnClickListener { mainViewModel.baristaPicksButtonClicked(Constants.TEAS) }
+        hotDrinks.setOnClickListener { mainViewModel.baristaPicksButtonClicked(DrinkTypes.HOT_DRINKS) }
+        icedDrinks.setOnClickListener { mainViewModel.baristaPicksButtonClicked(DrinkTypes.ICED_DRINKS) }
+        teas.setOnClickListener { mainViewModel.baristaPicksButtonClicked(DrinkTypes.TEAS) }
         binding.viewModel = mainViewModel
     }
 }
