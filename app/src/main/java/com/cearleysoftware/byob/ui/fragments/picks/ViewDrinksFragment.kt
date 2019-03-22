@@ -25,6 +25,8 @@ import kotlinx.android.synthetic.main.fragment_drink_search.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class ViewDrinksFragment: Fragment() {
 
     private val drinksService by inject<DrinksService>()

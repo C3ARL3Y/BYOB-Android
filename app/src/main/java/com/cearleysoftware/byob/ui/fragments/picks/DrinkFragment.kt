@@ -15,6 +15,8 @@ import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_view_picks_drink.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class DrinkFragment: Fragment() {
 
     private val mainViewModel by sharedViewModel<MainViewModel>()

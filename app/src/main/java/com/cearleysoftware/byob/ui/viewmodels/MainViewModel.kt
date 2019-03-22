@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import com.cearleysoftware.byob.models.Drink
 import com.cearleysoftware.byob.util.SingleLiveEvent
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class MainViewModel: ViewModel() {
 
     private var currentFavoriteDrink: Drink? = null

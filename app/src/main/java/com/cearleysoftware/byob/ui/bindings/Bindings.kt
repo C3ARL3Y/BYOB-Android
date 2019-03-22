@@ -6,6 +6,8 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.cearleysoftware.byob.models.Nutrients
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 @BindingAdapter("nutrients")
 fun setNutrients(view: TextView, nutrients: Nutrients) {
     val nutrientsString = "Calories: ${nutrients.calories}\n\n" +
