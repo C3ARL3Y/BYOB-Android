@@ -29,7 +29,7 @@ fun setSteps(view: TextView, steps: List<String>) {
 }
 
 @BindingAdapter("imageUrl")
-fun setImageUrl(view: ImageView, imageUrl: String){
+fun setImageUrl(view: ImageView, imageUrl: String?){
     Glide.with(view)
             .load(imageUrl)
             .into(view)
