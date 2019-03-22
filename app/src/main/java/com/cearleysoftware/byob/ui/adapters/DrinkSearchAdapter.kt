@@ -39,13 +39,6 @@ class DrinkSearchAdapter: RecyclerView.Adapter<DrinkSearchAdapter.ViewHolder>() 
         fun bind(drink: Drink) {
             binding.drink = drink
             binding.executePendingBindings()
-
-           /* binding.popupMenu.run {
-                playlistId = this@ViewHolder.playlistId
-                setupMenu(popupMenuListener) { song }
-            }
-
-            binding.ivReorder.showOrHide(isQueue)*/
         }
     }
 }

@@ -31,7 +31,7 @@ class DrinkServiceImplementation(database: DatabaseReference): DrinksService{
 
     override fun getDrinks(drinkType: String): Observable<List<Drink>> {
         return Observable.create { emitter ->
-            val drinks = /*ArrayList<Drink>()*/ MockDataManager.getMockDrinks()
+            val drinks = /*ArrayList<Drink>()*/ MockDataManager.getMockDrinks()// todo: Get drinks from firebase
 
             emitter.onNext(drinks)
         }

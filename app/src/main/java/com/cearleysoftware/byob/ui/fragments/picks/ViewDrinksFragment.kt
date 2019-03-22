@@ -49,6 +49,10 @@ class ViewDrinksFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setupUI()
+    }
+
+    private fun setupUI() {
         drinksAdapter = DrinkSearchAdapter()
         recyclerView.apply {
             layoutManager = LinearLayoutManager(safeActivity)
