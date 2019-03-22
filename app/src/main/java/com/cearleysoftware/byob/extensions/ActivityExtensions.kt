@@ -50,3 +50,8 @@ fun Activity?.replaceFragment(
                 commit()
             }
 }
+
+fun Activity?.popBackStack(){
+    val compatActivity = this as? AppCompatActivity ?: return
+    compatActivity.supportFragmentManager.popBackStack()
+}
