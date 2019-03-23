@@ -46,9 +46,9 @@ class CreateDrinkFragment: Fragment() {
 
     private fun setupUI() {
 
-        nutrientsButton.setOnClickListener {  }
-        stepsButton.setOnClickListener {  }
-        backButton.setOnClickListener {  }
+        nutrientsButton.setOnClickListener { mainViewModel.navigateToNutrientsScreen(drink?.nutrients) }
+        stepsButton.setOnClickListener { mainViewModel.navigateToStepsScreen(drink?.steps?: emptyList()) }
+        backButton.setOnClickListener { mainViewModel.popBackStack() }
         saveButton.setOnClickListener {
             createDrinkViewModel.saveDrink(
                     drink?.id?: "",
@@ -60,6 +60,9 @@ class CreateDrinkFragment: Fragment() {
 
         createDrinkViewModel.onDrinkSaved.observe(this, Observer {
             mainViewModel.popBackStack()
+        })
+        createDrinkViewModel.onDrinkSaveFailed.observe(this, Observer {
+            mainViewModel.showAlertDialog("Error", "Could not save drink.")
         })
         binding.drink = drink
     }

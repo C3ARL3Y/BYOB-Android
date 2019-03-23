@@ -24,4 +24,7 @@
     <string name="search_hint">drink name...</string>
     <string name="done">Done</string>
     <string name="new_drink">New Drink</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="plus">+</string>
 </resources>

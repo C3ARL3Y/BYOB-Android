@@ -2,6 +2,7 @@ package com.cearleysoftware.byob.ui.activities
 
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.cearleysoftware.byob.R
@@ -12,6 +13,7 @@ import com.cearleysoftware.byob.extensions.setDataBindingContentView
 import com.cearleysoftware.byob.ui.fragments.MainFragment
 import com.cearleysoftware.byob.ui.fragments.picks.CreateDrinkFragment
 import com.cearleysoftware.byob.ui.fragments.picks.DrinkFragment
+import com.cearleysoftware.byob.ui.fragments.picks.StepsFragment
 import com.cearleysoftware.byob.ui.fragments.picks.ViewDrinksFragment
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -44,6 +46,11 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(fragment = CreateDrinkFragment.newInstance(drink), addToBackStack = true)
         })
 
+        viewModel.navigateToSteps.observe(this, Observer { steps ->
+            replaceFragment(fragment = StepsFragment.newInstance(steps), addToBackStack = true)
+
+        })
+
         viewModel.navigateToFavoriteDrink.observe(this, Observer { drinkType ->
             Log.d("favoriteDrink", "favoriteDrink")
 
@@ -52,6 +59,15 @@ class MainActivity : AppCompatActivity() {
         viewModel.navigateToCoffeeBase.observe(this, Observer { drinkType ->
             Log.d("coffeeBase", "coffeebase")
 
+        })
+
+        viewModel.showAlertDialog.observe(this, Observer { alertData ->
+            AlertDialog.Builder(this)
+                    .setCancelable(false)
+                    .setTitle(alertData.title)
+                    .setMessage(alertData.message)
+                    .create()
+                    .show()
         })
 
         viewModel.popBackStack.observe(this, Observer {

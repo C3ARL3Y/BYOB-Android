@@ -16,7 +16,7 @@ interface DrinksService{
 
     fun getDrinks(drinkType: String): Observable<List<Drink>>
 
-    fun deleteDrink(drinkId: Int): Observable<Task<Void>>
+    fun deleteDrink(drinkId: String): Observable<Boolean>
 }
 
 class DrinkServiceImplementation(database: DatabaseReference): DrinksService{
@@ -40,8 +40,10 @@ class DrinkServiceImplementation(database: DatabaseReference): DrinksService{
 
     }
 
-    override fun deleteDrink(drinkId: Int): Observable<Task<Void>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun deleteDrink(drinkId: String): Observable<Boolean> {
+        return Observable.create { emitter ->
+            emitter.onNext(true)
+        }
     }
 
 }

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,6 +17,7 @@ import com.cearleysoftware.byob.extensions.addOnItemClick
 import com.cearleysoftware.byob.extensions.addOnItemLongClick
 import com.cearleysoftware.byob.extensions.inflateTo
 import com.cearleysoftware.byob.extensions.safeActivity
+import com.cearleysoftware.byob.models.Drink
 import com.cearleysoftware.byob.network.api.DrinksService
 import com.cearleysoftware.byob.ui.adapters.DrinkSearchAdapter
 import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
@@ -68,16 +70,23 @@ class ViewDrinksFragment: Fragment() {
             addOnItemClick { position, view ->
                 val drink = drinksAdapter.getSongForPosition(position)
                 mainViewModel.drinkFromPicksClicked(drink)
-                Log.d("test", "drink ${drink.id} clicked")
             }
 
             addOnItemLongClick{ position, view ->
                 val drink = drinksAdapter.getSongForPosition(position)
-                Log.d("testLongClick", "drink ${drink.id} long clicked")
+                createDrinkViewModel.drinkFromPicksLongClicked(drink, view)
             }
         }
         newDrinkButton.setOnClickListener { mainViewModel.navigateToCreateDrink(null) }
         doneButton.setOnClickListener { mainViewModel.popBackStack() }
+
+        createDrinkViewModel.navigateToCreateDrink.observe(this, Observer { drink ->
+            mainViewModel.navigateToCreateDrink(drink)
+        })
+
+        createDrinkViewModel.onDrinkRemoved.observe(this, Observer {
+            loadDrinks()
+        })
     }
 
     private fun loadDrinks() {

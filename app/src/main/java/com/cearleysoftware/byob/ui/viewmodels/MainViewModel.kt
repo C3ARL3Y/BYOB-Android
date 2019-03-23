@@ -1,9 +1,13 @@
 package com.cearleysoftware.byob.ui.viewmodels
 
+import android.view.View
+import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.models.Drink
+import com.cearleysoftware.byob.models.Nutrients
 import com.cearleysoftware.byob.util.SingleLiveEvent
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
@@ -20,8 +24,12 @@ class MainViewModel: ViewModel() {
     val navigateToDrinkFromPicks: LiveData<Drink> get() = _navigateToDrinkFromPicks
     private val _navigateToDrinkFromPicks = MutableLiveData<Drink>()
 
-    val navigateToCreateDrink: LiveData<Drink?> get() = _navigateToCreateDrink
-    private val _navigateToCreateDrink = MutableLiveData<Drink?>()
+    val navigateToCreateDrink = SingleLiveEvent<Drink>()
+
+    val navigateToSteps = SingleLiveEvent<List<String>>()
+
+    val showAlertDialog: LiveData<AlertData> get() = _showAlertDialog
+    private val _showAlertDialog = MutableLiveData<AlertData>()
 
     val navigateToFavoriteDrink = SingleLiveEvent<Unit>()
 
@@ -62,6 +70,20 @@ class MainViewModel: ViewModel() {
     }
 
     fun navigateToCreateDrink(drink: Drink?) {
-        _navigateToCreateDrink.value = drink
+        navigateToCreateDrink.postValue(drink)
     }
+
+    fun showAlertDialog(title: String, message: String) {
+        _showAlertDialog.postValue(AlertData(title, message))
+    }
+
+    fun navigateToStepsScreen(steps: List<String>) {
+        navigateToSteps.postValue(steps)
+    }
+
+    fun navigateToNutrientsScreen(nutrients: Nutrients?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    data class AlertData(val title: String, val message: String)
 }
