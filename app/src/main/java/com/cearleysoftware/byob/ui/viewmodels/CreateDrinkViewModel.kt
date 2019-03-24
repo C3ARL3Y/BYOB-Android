@@ -34,6 +34,7 @@ class CreateDrinkViewModel(private val drinkService: DrinksService): ViewModel()
                 .subscribe({ drinkResult ->
                     savedDrink = drinkResult
                     onDrinkSaved.call()
+                    drinkData.clear()
                 }, { error ->
                     onDrinkSaveFailed.call()
                     error.printStackTrace()

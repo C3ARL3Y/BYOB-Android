@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:text="Byob"
         android:textSize="20sp"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/lightTan"/>
 
     <ImageView
         android:id="@+id/addToFavoriteButton"

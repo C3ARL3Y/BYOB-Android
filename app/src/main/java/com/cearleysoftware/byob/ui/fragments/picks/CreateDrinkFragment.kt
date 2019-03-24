@@ -1,5 +1,6 @@
 package com.cearleysoftware.byob.ui.fragments.picks
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.cearleysoftware.byob.constants.Constants
 import com.cearleysoftware.byob.constants.DrinkTypes
 import com.cearleysoftware.byob.databinding.FragmentCreateDrinkBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
+import com.cearleysoftware.byob.extensions.loadImage
 import com.cearleysoftware.byob.models.Drink
 import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
@@ -49,6 +51,12 @@ class CreateDrinkFragment: Fragment() {
         nutrientsButton.setOnClickListener { mainViewModel.navigateToNutrientsScreen(drink?.nutrients) }
         stepsButton.setOnClickListener { mainViewModel.navigateToStepsScreen(drink?.steps?: emptyList()) }
         backButton.setOnClickListener { mainViewModel.popBackStack() }
+        drinkImageView.setOnClickListener {
+            mainViewModel.navigateToImageGallery { path: String, _: Uri ->
+                drinkImageView.loadImage(path)
+                createDrinkViewModel.drinkData.imageUrl = path
+            }
+        }
         saveButton.setOnClickListener {
             createDrinkViewModel.saveDrink(
                     drink?.id?: "",

@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#806552</color>
     <color name="colorPrimaryDark">#6e4e39</color>
-    <color name="colorAccent">#f4dcb8</color>
+    <color name="colorAccent">#6e4e39</color>
+    <color name="lightTan">#f4dcb8</color>
     <color name="tan">#d2b99a</color>
 </resources>

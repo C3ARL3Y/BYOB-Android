@@ -1,5 +1,6 @@
 package com.cearleysoftware.byob.ui.viewmodels
 
+import android.net.Uri
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.LiveData
@@ -27,6 +28,10 @@ class MainViewModel: ViewModel() {
     val navigateToCreateDrink = SingleLiveEvent<Drink>()
 
     val navigateToSteps = SingleLiveEvent<List<String>>()
+
+    val navigateToNutrients = SingleLiveEvent<Nutrients>()
+
+    val navigateToImageGallery = SingleLiveEvent<(String, Uri) -> Unit>()
 
     val showAlertDialog: LiveData<AlertData> get() = _showAlertDialog
     private val _showAlertDialog = MutableLiveData<AlertData>()
@@ -73,6 +78,10 @@ class MainViewModel: ViewModel() {
         navigateToCreateDrink.postValue(drink)
     }
 
+    fun navigateToImageGallery(onGalleryResult: (String, Uri) -> Unit){
+        navigateToImageGallery.postValue(onGalleryResult)
+    }
+
     fun showAlertDialog(title: String, message: String) {
         _showAlertDialog.postValue(AlertData(title, message))
     }
@@ -82,7 +91,7 @@ class MainViewModel: ViewModel() {
     }
 
     fun navigateToNutrientsScreen(nutrients: Nutrients?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        navigateToNutrients.postValue(nutrients)
     }
 
     data class AlertData(val title: String, val message: String)

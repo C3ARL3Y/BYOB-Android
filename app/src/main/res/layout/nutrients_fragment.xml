@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightTan"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp">
+
+                <LinearLayout
+                    android:id="@+id/calories_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Calories:" />
+
+                    <EditText
+                        android:id="@+id/caloriesEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="96dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/nutrients_edit_text_background"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:textSize="14sp"
+                        android:hint="@string/calories_hint"
+                        android:padding="15dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/protein_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Protein:" />
+
+                    <EditText
+                        android:id="@+id/proteinEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="96dp"
+                        android:layout_weight="1"
+                        android:hint="@string/protein_hint"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:textSize="14sp"
+                        android:background="@drawable/nutrients_edit_text_background"
+                        android:padding="15dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/carbs_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Carbs:" />
+
+                    <EditText
+                        android:id="@+id/carbsEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="96dp"
+                        android:layout_weight="1"
+                        android:hint="@string/carbs_hint"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:textSize="14sp"
+                        android:background="@drawable/nutrients_edit_text_background"
+                        android:padding="15dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fats_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Fats:" />
+
+                    <EditText
+                        android:id="@+id/fatsEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="96dp"
+                        android:layout_weight="1"
+                        android:hint="@string/fats_hint"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:textSize="14sp"
+                        android:background="@drawable/nutrients_edit_text_background"
+                        android:padding="15dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sugar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Sugar:" />
+
+                    <EditText
+                        android:id="@+id/sugarsEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="96dp"
+                        android:layout_weight="1"
+                        android:hint="@string/sugar_hint"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:textSize="14sp"
+                        android:background="@drawable/nutrients_edit_text_background"
+                        android:padding="15dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/caffeine_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Caffeine:" />
+
+                    <EditText
+                        android:id="@+id/caffeineEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="96dp"
+                        android:layout_weight="1"
+                        android:hint="@string/caffeine_hint"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:textSize="14sp"
+                        android:background="@drawable/nutrients_edit_text_background"
+                        android:padding="15dp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/doneButton"
+            style="@style/ButtonAppearance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
+            android:text="@string/done"/>
+
+    </LinearLayout>
+
+</layout>

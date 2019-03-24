@@ -6,7 +6,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent">
+        android:background="@color/lightTan">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/done"
                 android:layout_gravity="center_vertical"
-                android:textColor="@color/colorAccent"/>
+                android:textColor="@color/lightTan"/>
 
             <TextView
                 android:id="@+id/addStepButton"
@@ -41,7 +41,7 @@
                 android:layout_gravity="end|center_vertical"
                 android:text="@string/plus"
                 android:textSize="22sp"
-                android:textColor="@color/colorAccent"/>
+                android:textColor="@color/lightTan"/>
 
         </FrameLayout>
 
