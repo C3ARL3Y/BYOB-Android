@@ -23,6 +23,7 @@ class DrinkServiceImplementation(database: DatabaseReference): DrinksService{
 
     override fun addDrink(drink: Drink): Observable<Drink> {
         return Observable.create { emitter ->
+            // todo: Add drink with firebase
             emitter.onNext(drink)
         }
     }
@@ -42,6 +43,7 @@ class DrinkServiceImplementation(database: DatabaseReference): DrinksService{
 
     override fun deleteDrink(drinkId: String): Observable<Boolean> {
         return Observable.create { emitter ->
+            // todo: Delete drink with firebase
             emitter.onNext(true)
         }
     }

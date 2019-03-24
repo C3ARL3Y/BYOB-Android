@@ -87,15 +87,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun startGallery(){
-
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when(requestCode){
 
-
+            // todo: Implement camera
            /* Constants.CAMERA_REQUEST_CODE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     CameraManager.onActivityResult()
@@ -115,6 +111,7 @@ class MainActivity : AppCompatActivity() {
                 galleryManager.onRequestPermissionsResult(grantResults)
             }
 
+            // todo: Implement camera
            /* Constants.CAMERA_PERMISSION_REQUEST_CODE -> {
                 CameraManager.onRequestPermissionsResult(grantResults)
             }*/

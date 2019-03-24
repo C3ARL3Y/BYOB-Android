@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.cearleysoftware.byob.constants.Constants
 import com.cearleysoftware.byob.extensions.isPermissionGranted
 import com.cearleysoftware.byob.extensions.requestPermission
+import timber.log.Timber
 
 class GalleryManager(private val context: Application) {
 
@@ -64,7 +65,7 @@ class GalleryManager(private val context: Application) {
                 imageResult = null
             }
             else{
-               // LoggingManager.logException("Path from result is null")
+                Timber.e("Path from result is null")
             }
         }
     }
@@ -87,19 +88,20 @@ class GalleryManager(private val context: Application) {
 
             val column = arrayOf(MediaStore.Images.Media.DATA)
 
-            // where id is equal to
             val sel = MediaStore.Images.Media._ID + "=?"
-            val cursor = context.getContentResolver().query(
+            val cursor = context.contentResolver.query(
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     column, sel, arrayOf<String>(wholeID), null)
-            val columnIndex = cursor.getColumnIndex(column[0])
+            if (cursor != null) {
+                val columnIndex = cursor.getColumnIndex(column[0])
 
-            if (cursor.moveToFirst()) {
-                mSelectedImagePath = cursor.getString(columnIndex)
+                if (cursor.moveToFirst()) {
+                    mSelectedImagePath = cursor.getString(columnIndex)
+                    cursor.close()
+                    return mSelectedImagePath
+                }
                 cursor.close()
-                return mSelectedImagePath
             }
-            cursor.close()
         }
         return mSelectedImagePath
     }
