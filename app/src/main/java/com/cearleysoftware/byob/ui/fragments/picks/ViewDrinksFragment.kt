@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.constants.Constants
@@ -15,8 +17,10 @@ import com.cearleysoftware.byob.extensions.addOnItemClick
 import com.cearleysoftware.byob.extensions.addOnItemLongClick
 import com.cearleysoftware.byob.extensions.inflateTo
 import com.cearleysoftware.byob.extensions.safeActivity
+import com.cearleysoftware.byob.models.Drink
 import com.cearleysoftware.byob.network.api.DrinksService
 import com.cearleysoftware.byob.ui.adapters.DrinkSearchAdapter
+import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -31,6 +35,7 @@ class ViewDrinksFragment: Fragment() {
 
     private val drinksService by inject<DrinksService>()
     private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val createDrinkViewModel by sharedViewModel<CreateDrinkViewModel>()
     private val disposables = CompositeDisposable()
 
     private lateinit var drinksAdapter: DrinkSearchAdapter
@@ -52,6 +57,11 @@ class ViewDrinksFragment: Fragment() {
         setupUI()
     }
 
+    override fun onStart() {
+        super.onStart()
+        loadDrinks()
+    }
+
     private fun setupUI() {
         drinksAdapter = DrinkSearchAdapter()
         recyclerView.apply {
@@ -60,17 +70,23 @@ class ViewDrinksFragment: Fragment() {
             addOnItemClick { position, view ->
                 val drink = drinksAdapter.getSongForPosition(position)
                 mainViewModel.drinkFromPicksClicked(drink)
-                Log.d("test", "drink ${drink.id} clicked")
             }
 
             addOnItemLongClick{ position, view ->
                 val drink = drinksAdapter.getSongForPosition(position)
-                Log.d("testLongClick", "drink ${drink.id} long clicked")
+                createDrinkViewModel.drinkFromPicksLongClicked(drink, view)
             }
         }
         newDrinkButton.setOnClickListener { mainViewModel.navigateToCreateDrink(null) }
         doneButton.setOnClickListener { mainViewModel.popBackStack() }
-        loadDrinks()
+
+        createDrinkViewModel.navigateToCreateDrink.observe(this, Observer { drink ->
+            mainViewModel.navigateToCreateDrink(drink)
+        })
+
+        createDrinkViewModel.onDrinkRemoved.observe(this, Observer {
+            loadDrinks()
+        })
     }
 
     private fun loadDrinks() {

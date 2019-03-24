@@ -10,19 +10,22 @@ import io.reactivex.Observable
 
 interface DrinksService{
 
-    fun addDrink(drink: Drink): Observable<Task<Void>>
+    fun addDrink(drink: Drink): Observable<Drink>
 
     fun updateDrink(drink: Drink): Observable<Task<Void>>
 
     fun getDrinks(drinkType: String): Observable<List<Drink>>
 
-    fun deleteDrink(drinkId: Int): Observable<Task<Void>>
+    fun deleteDrink(drinkId: String): Observable<Boolean>
 }
 
 class DrinkServiceImplementation(database: DatabaseReference): DrinksService{
 
-    override fun addDrink(drink: Drink): Observable<Task<Void>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun addDrink(drink: Drink): Observable<Drink> {
+        return Observable.create { emitter ->
+            // todo: Add drink with firebase
+            emitter.onNext(drink)
+        }
     }
 
     override fun updateDrink(drink: Drink): Observable<Task<Void>> {
@@ -38,8 +41,11 @@ class DrinkServiceImplementation(database: DatabaseReference): DrinksService{
 
     }
 
-    override fun deleteDrink(drinkId: Int): Observable<Task<Void>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun deleteDrink(drinkId: String): Observable<Boolean> {
+        return Observable.create { emitter ->
+            // todo: Delete drink with firebase
+            emitter.onNext(true)
+        }
     }
 
 }

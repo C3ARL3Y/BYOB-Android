@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 //  Copyright © 2019 Cearley Software. All rights reserved.
 
 @Parcelize
-data class Nutrients(var id: Int,
+data class Nutrients(var id: Int = -1,
                      var calories: Int = 0,
                      var protein: Int = 0,
                      var carbs: Int = 0,

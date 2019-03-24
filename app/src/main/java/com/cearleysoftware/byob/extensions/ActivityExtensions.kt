@@ -1,9 +1,11 @@
 package com.cearleysoftware.byob.extensions
 
 import android.app.Activity
+import android.content.pm.PackageManager
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -54,4 +56,16 @@ fun Activity?.replaceFragment(
 fun Activity?.popBackStack(){
     val compatActivity = this as? AppCompatActivity ?: return
     compatActivity.supportFragmentManager.popBackStack()
+}
+
+fun Activity?.isPermissionGranted(permission: String): Boolean{
+    val appCompatActivity = this as? AppCompatActivity?: return false
+    return ActivityCompat.checkSelfPermission(appCompatActivity, permission) == PackageManager.PERMISSION_GRANTED
+}
+
+fun Activity.requestPermission(permission: String,
+                                        requestId: Int) {
+    val appCompatActivity = this as? AppCompatActivity?: return
+    ActivityCompat.requestPermissions(appCompatActivity, arrayOf(permission), requestId)
+
 }

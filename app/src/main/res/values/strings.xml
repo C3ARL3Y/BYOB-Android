@@ -24,4 +24,13 @@
     <string name="search_hint">drink name...</string>
     <string name="done">Done</string>
     <string name="new_drink">New Drink</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="plus">+</string>
+    <string name="calories_hint">Amount of Calories</string>
+    <string name="protein_hint">Amount of Protein</string>
+    <string name="carbs_hint">Amount of Carbs</string>
+    <string name="fats_hint">Amount of Fats</string>
+    <string name="sugar_hint">Amount of Sugar</string>
+    <string name="caffeine_hint">Amount of Caffeine</string>
 </resources>
