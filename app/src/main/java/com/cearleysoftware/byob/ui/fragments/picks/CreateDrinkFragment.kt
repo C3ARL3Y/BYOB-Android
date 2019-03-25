@@ -2,6 +2,8 @@ package com.cearleysoftware.byob.ui.fragments.picks
 
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +21,7 @@ import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_create_drink.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import timber.log.Timber
 
 class CreateDrinkFragment: Fragment() {
 
@@ -26,11 +29,15 @@ class CreateDrinkFragment: Fragment() {
     private val createDrinkViewModel by sharedViewModel<CreateDrinkViewModel> ()
     private val mainViewModel by sharedViewModel<MainViewModel>()
 
-    private var drink: Drink? = null
+    private lateinit var drink: Drink
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        drink = arguments?.getParcelable(Constants.DRINK)
+        drink = arguments?.getParcelable(Constants.DRINK)?: Drink()
+        val drinkData = createDrinkViewModel.drinkData
+        drinkData.nutrients = drink.nutrients
+        drinkData.steps = drink.steps
+        Timber.d("test")
     }
 
     override fun onCreateView(
@@ -48,8 +55,8 @@ class CreateDrinkFragment: Fragment() {
 
     private fun setupUI() {
 
-        nutrientsButton.setOnClickListener { mainViewModel.navigateToNutrientsScreen(drink?.nutrients) }
-        stepsButton.setOnClickListener { mainViewModel.navigateToStepsScreen(drink?.steps?: emptyList()) }
+        nutrientsButton.setOnClickListener { mainViewModel.navigateToNutrientsScreen(drink.nutrients) }
+        stepsButton.setOnClickListener { mainViewModel.navigateToStepsScreen(drink.steps) }
         backButton.setOnClickListener { mainViewModel.popBackStack() }
         drinkImageView.setOnClickListener {
             mainViewModel.navigateToImageGallery { path: String, _: Uri ->
@@ -59,12 +66,39 @@ class CreateDrinkFragment: Fragment() {
         }
         saveButton.setOnClickListener {
             createDrinkViewModel.saveDrink(
-                    drink?.id?: "",
+                    drink.id,
                 nameView.text.toString(),
                 discriptionView.text.toString(),
-                    drink?.type?: DrinkTypes.HOT_DRINKS
+                    drink.type,
+                    drink.imageURL
             )
         }
+
+        nameView.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+                drink.name = text?.toString()?: ""
+            }
+        })
+
+        discriptionView.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+                drink.description = text?.toString()?: ""
+            }
+        })
 
         createDrinkViewModel.onDrinkSaved.observe(this, Observer {
             mainViewModel.popBackStack()

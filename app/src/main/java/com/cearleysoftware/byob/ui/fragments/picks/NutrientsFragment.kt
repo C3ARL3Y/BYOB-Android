@@ -47,7 +47,6 @@ class NutrientsFragment: Fragment() {
     }
 
     private fun storeNutrientsData() {
-        caffeineEditText.text.toString().toInt()
         nutrients?.caffeine = getIntFromText(caffeineEditText.text.toString())
         nutrients?.sugar = getIntFromText(sugarsEditText.text.toString())
         nutrients?.fats = getIntFromText(fatsEditText.text.toString())

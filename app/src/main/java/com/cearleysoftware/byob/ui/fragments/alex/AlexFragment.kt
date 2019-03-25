@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.databinding.FragmentAlexBinding
@@ -26,6 +27,18 @@ class AlexFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        login.setOnClickListener {  }
+        login.setOnClickListener {
+            val email = emailView.text.toString()
+            val password = passwordView.text.toString()
+            when {
+                email.isBlank() -> mainViewModel.showAlertDialog("Login error", "You must enter an email")
+                password.isBlank() -> mainViewModel.showAlertDialog("Login error", "You must enter a password")
+                else -> mainViewModel.login(emailView.text.toString(), passwordView.text.toString())
+            }
+        }
+
+        emailListButton.setOnClickListener {
+            mainViewModel.showAddEmailDialog()
+        }
     }
 }

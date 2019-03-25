@@ -2,6 +2,8 @@ package com.cearleysoftware.byob.extensions
 
 import android.app.Activity
 import android.content.pm.PackageManager
+import android.util.DisplayMetrics
+import android.util.TypedValue
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -68,4 +70,8 @@ fun Activity.requestPermission(permission: String,
     val appCompatActivity = this as? AppCompatActivity?: return
     ActivityCompat.requestPermissions(appCompatActivity, arrayOf(permission), requestId)
 
+}
+
+fun DisplayMetrics.dpToPx(dp: Int): Int {
+    return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), this ))
 }

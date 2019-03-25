@@ -33,6 +33,8 @@ class MainViewModel: ViewModel() {
 
     val navigateToImageGallery = SingleLiveEvent<(String, Uri) -> Unit>()
 
+    val showEmailDialog = SingleLiveEvent<Unit>()
+
     val showAlertDialog: LiveData<AlertData> get() = _showAlertDialog
     private val _showAlertDialog = MutableLiveData<AlertData>()
 
@@ -40,7 +42,11 @@ class MainViewModel: ViewModel() {
 
     val navigateToCoffeeBase = SingleLiveEvent<Unit>()
 
+    val showToast = SingleLiveEvent<String>()
+
     val popBackStack = SingleLiveEvent<Unit>()
+
+    val login = SingleLiveEvent<LoginData>()
 
     private val _hasFavoriteDrinkToSave = MutableLiveData<Boolean>()
     val hasFavoriteDrinkToSave: LiveData<Boolean> get() = _hasFavoriteDrinkToSave
@@ -94,5 +100,19 @@ class MainViewModel: ViewModel() {
         navigateToNutrients.postValue(nutrients)
     }
 
+    fun login(email: String, password: String) {
+        login.postValue(LoginData(email, password))
+    }
+
+    fun showAddEmailDialog() {
+        showEmailDialog.call()
+    }
+
+    fun showToast(message: String) {
+        showToast.postValue(message)
+    }
+
     data class AlertData(val title: String, val message: String)
+
+    data class LoginData(val email: String, val password: String)
 }

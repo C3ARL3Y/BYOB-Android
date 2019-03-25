@@ -9,7 +9,8 @@ import com.cearleysoftware.byob.models.Nutrients
 //  Copyright © 2019 Cearley Software. All rights reserved.
 
 @BindingAdapter("nutrients")
-fun setNutrients(view: TextView, nutrients: Nutrients) {
+fun setNutrients(view: TextView, nutrients: Nutrients?) {
+    nutrients?: return
     val nutrientsString = "Calories: ${nutrients.calories}\n\n" +
             "Protein: ${nutrients.protein}\n\n" +
             "Carbs: ${nutrients.carbs}\n\n" +

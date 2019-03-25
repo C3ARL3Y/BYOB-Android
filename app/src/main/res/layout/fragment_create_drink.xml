@@ -46,7 +46,7 @@
                     android:layout_width="144dp"
                     android:layout_height="144dp"
                     android:layout_gravity="center"
-                    app:imageUrl="@{drink.image}"
+                    app:imageUrl="@{drink.imageURL}"
                     tools:src="@drawable/alex"/>
 
             </FrameLayout>
