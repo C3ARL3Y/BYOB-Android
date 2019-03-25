@@ -123,7 +123,7 @@ class MainActivity : AppCompatActivity() {
 
         alert.setPositiveButton("Ok") { _, _ ->
             val email = edittext.text.toString().trim()
-            disposables.add(emailService.sendEmail(email)
+            disposables.add(emailService.sendEmail(email)// todo: Move to ViewModel in AlexFragment
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity() {
         alert.show()
     }
 
-    private fun signIn(loginData: MainViewModel.LoginData?) {
+    private fun signIn(loginData: MainViewModel.LoginData?) { // todo: Move to ViewModel in AlexFragment
         loginData?: return
         disposables.add(authenticationService.signInWithEmailAndPassword(loginData.email, loginData.password)
                 .subscribeOn(Schedulers.io())
