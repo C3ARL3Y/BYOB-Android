@@ -16,6 +16,8 @@ import kotlinx.android.synthetic.main.nutrients_fragment.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.lang.NumberFormatException
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class NutrientsFragment: Fragment() {
 
     private val mainViewModel by sharedViewModel<MainViewModel>()

@@ -1,16 +1,11 @@
 package com.cearleysoftware.byob.network.api
 
 import android.app.Activity
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import io.reactivex.Observable
-import android.widget.Toast
-import androidx.annotation.NonNull
-import com.google.firebase.auth.AuthResult
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
 
 interface AuthenticationService{
 

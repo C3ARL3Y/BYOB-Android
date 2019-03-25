@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cearleysoftware.byob.R
-import com.cearleysoftware.byob.constants.Constants
 import com.cearleysoftware.byob.constants.DrinkTypes
 import com.cearleysoftware.byob.databinding.FragmentBaristaPicksBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding

@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.constants.Constants
-import com.cearleysoftware.byob.constants.DrinkTypes
 import com.cearleysoftware.byob.databinding.FragmentCreateDrinkBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
 import com.cearleysoftware.byob.extensions.loadImage
@@ -22,6 +21,8 @@ import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_create_drink.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
+
+//  Copyright © 2019 Cearley Software. All rights reserved.
 
 class CreateDrinkFragment: Fragment() {
 

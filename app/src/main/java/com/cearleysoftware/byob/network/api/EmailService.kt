@@ -6,6 +6,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import io.reactivex.Observable
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 interface EmailService{
 
     fun sendEmail(email: String): Observable<Boolean>

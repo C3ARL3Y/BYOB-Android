@@ -2,8 +2,6 @@ package com.cearleysoftware.byob.ui.viewmodels
 
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.models.Drink
@@ -13,6 +11,8 @@ import com.cearleysoftware.byob.util.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+
+//  Copyright © 2019 Cearley Software. All rights reserved.
 
 class CreateDrinkViewModel(private val drinkService: DrinksService): ViewModel() {
 

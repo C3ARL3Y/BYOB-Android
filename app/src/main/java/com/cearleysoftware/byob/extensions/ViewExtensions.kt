@@ -14,6 +14,8 @@ import com.cearleysoftware.byob.ui.widgets.RecyclerItemLongClickListener
 import com.cearleysoftware.byob.ui.widgets.RecyclerViewItemClickListener
 import com.cearleysoftware.byob.ui.widgets.RecyclerViewItemLongClickListener
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 fun RecyclerView.addOnItemClick(listener: RecyclerViewItemClickListener) {
     this.addOnChildAttachStateChangeListener(RecyclerItemClickListener(this, listener))
 }

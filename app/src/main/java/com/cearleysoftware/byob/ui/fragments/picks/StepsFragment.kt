@@ -23,6 +23,8 @@ import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_steps.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class StepsFragment: Fragment(){
 
     private lateinit var stepsAdapter: StepsAdapter
