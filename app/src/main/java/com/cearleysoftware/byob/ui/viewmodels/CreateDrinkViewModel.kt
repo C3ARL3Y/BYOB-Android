@@ -2,8 +2,6 @@ package com.cearleysoftware.byob.ui.viewmodels
 
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.models.Drink
@@ -14,10 +12,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class CreateDrinkViewModel(private val drinkService: DrinksService): ViewModel() {
 
     val drinkData = CreateDrinkData()
-    var savedDrink: Drink? = null
     val disposables = CompositeDisposable()
 
     val onDrinkSaved = SingleLiveEvent<Unit>()
@@ -28,11 +27,13 @@ class CreateDrinkViewModel(private val drinkService: DrinksService): ViewModel()
 
     val navigateToCreateDrink = SingleLiveEvent<Drink>()
 
-    fun saveDrink(id: String, name: String, description: String, type: String){
-        val drink = Drink(id, name, drinkData.imageUrl, description, drinkData.nutrients, drinkData.steps, type)
-        disposables.add(drinkService.addDrink(drink)
-                .subscribe({ drinkResult ->
-                    savedDrink = drinkResult
+    fun saveDrink(id: String, name: String, description: String, type: String, originalImageUrl: String){
+        val drinkDataImageUrl = drinkData.imageUrl
+        val drink = Drink(id, name, originalImageUrl, description, drinkData.nutrients?: Nutrients(), drinkData.steps, type)
+        disposables.add(drinkService.addDrink(drink, drinkDataImageUrl)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
                     onDrinkSaved.call()
                     drinkData.clear()
                 }, { error ->
@@ -57,7 +58,7 @@ class CreateDrinkViewModel(private val drinkService: DrinksService): ViewModel()
                     navigateToCreateDrink.postValue(drink)
                 }
 
-                R.id.popup_drink_delete -> removeDrink(drink.id)
+                R.id.popup_drink_delete -> removeDrink(drink.type, drink.id)
             }
             true
         }
@@ -65,17 +66,12 @@ class CreateDrinkViewModel(private val drinkService: DrinksService): ViewModel()
         popupMenu.show()
     }
 
-    private fun removeDrink(drinkId: String) {
-        disposables.add(drinkService.deleteDrink(drinkId)
+    private fun removeDrink(drinkType: String, drinkId: String) {
+        disposables.add(drinkService.deleteDrink(drinkType, drinkId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ result ->
-                    if (result){
-                        onDrinkRemoved.call()
-                    }
-                    else{
-                        onDrinkRemoveFailed.call()
-                    }
+                .subscribe({
+                    onDrinkRemoved.call()
                 }, { error ->
                     error.printStackTrace()
                     onDrinkRemoveFailed.call()
@@ -84,7 +80,7 @@ class CreateDrinkViewModel(private val drinkService: DrinksService): ViewModel()
 
     data class CreateDrinkData(var imageUrl: String = "",
                                var nutrients: Nutrients? = null,
-                               var steps: MutableList<String> = mutableListOf()){
+                               var steps: ArrayList<String> = ArrayList()){
 
         fun clear(){
             imageUrl = ""

@@ -3,6 +3,8 @@ package com.cearleysoftware.byob.ui.widgets
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 typealias RecyclerViewItemLongClickListener = (position: Int, view: View) -> Unit
 
 class RecyclerItemLongClickListener(

@@ -9,7 +9,7 @@ import com.cearleysoftware.byob.models.Drink
 
 class DrinkSearchAdapter: RecyclerView.Adapter<DrinkSearchAdapter.ViewHolder>() {
 
-    private var drinks: List<Drink> = emptyList()
+    private var drinks: ArrayList<Drink> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val viewBinding = parent.inflateWithBinding<ItemDrinkBinding>(R.layout.item_drink)
@@ -24,7 +24,8 @@ class DrinkSearchAdapter: RecyclerView.Adapter<DrinkSearchAdapter.ViewHolder>() 
     }
 
     fun updateData(data: List<Drink>){
-        drinks = data
+        drinks.clear()
+        drinks.addAll(data)
         notifyDataSetChanged()
     }
 
