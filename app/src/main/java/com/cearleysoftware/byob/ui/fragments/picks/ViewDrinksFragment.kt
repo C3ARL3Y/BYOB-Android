@@ -97,7 +97,7 @@ class ViewDrinksFragment: Fragment() {
             loadDrinks()
         })
         createDrinkViewModel.onDrinkRemoveFailed.observe(this, Observer {
-
+            mainViewModel.showToast("Unable to remove drink")
         })
     }
 

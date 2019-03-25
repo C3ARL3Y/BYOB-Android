@@ -38,7 +38,6 @@ class CreateDrinkFragment: Fragment() {
         val drinkData = createDrinkViewModel.drinkData
         drinkData.nutrients = drink.nutrients
         drinkData.steps = drink.steps
-        Timber.d("test")
     }
 
     override fun onCreateView(

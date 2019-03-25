@@ -61,7 +61,6 @@ class DrinkServiceImplementation(private val database: DatabaseReference, privat
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    // Failed to read value
                     emitter.onError(error.toException())
                 }
             })
