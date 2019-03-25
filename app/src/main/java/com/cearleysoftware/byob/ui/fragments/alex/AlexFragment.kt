@@ -27,12 +27,12 @@ class AlexFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         login.setOnClickListener {
-            val email = emailView.text.toString()
-            val password = passwordView.text.toString()
+            val email = emailView.text.toString().trim()
+            val password = passwordView.text.toString().trim()
             when {
                 email.isBlank() -> mainViewModel.showAlertDialog("Login error", "You must enter an email")
                 password.isBlank() -> mainViewModel.showAlertDialog("Login error", "You must enter a password")
-                else -> mainViewModel.login(emailView.text.toString(), passwordView.text.toString())
+                else -> mainViewModel.login(email, password)
             }
         }
 
