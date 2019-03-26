@@ -7,6 +7,8 @@ import com.cearleysoftware.byob.databinding.ItemMilkBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
 import com.cearleysoftware.byob.models.MilksData
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class MilksAdapter(val list: List<MilksData>): RecyclerView.Adapter<MilksAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

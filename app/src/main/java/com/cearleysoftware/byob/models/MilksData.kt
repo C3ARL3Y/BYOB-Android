@@ -1,5 +1,7 @@
 package com.cearleysoftware.byob.models
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 data class MilksData(var milk: String,
                      var calories: Double = 0.0,
                      var protein: Double = 0.0,

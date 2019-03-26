@@ -1,5 +1,7 @@
 package com.cearleysoftware.byob.constants
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 object MilkNames{
     const val WHOLE = "Whole Milk: 2oz"
     const val TWO_PERCENT = "2% Milk: 2oz"

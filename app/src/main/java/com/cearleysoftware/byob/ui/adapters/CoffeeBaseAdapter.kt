@@ -7,7 +7,9 @@ import com.cearleysoftware.byob.databinding.ItemCoffeeBaseBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
 import com.cearleysoftware.byob.ui.fragments.customize.CoffeeBaseFragment
 
-class CoffeeBaseAdapter(): RecyclerView.Adapter<CoffeeBaseAdapter.ViewHolder>() {
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
+class CoffeeBaseAdapter: RecyclerView.Adapter<CoffeeBaseAdapter.ViewHolder>() {
 
     private val bases:ArrayList<CoffeeBaseFragment.CoffeeBaseData> = ArrayList()
 

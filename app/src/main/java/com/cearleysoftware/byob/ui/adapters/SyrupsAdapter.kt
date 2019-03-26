@@ -7,6 +7,8 @@ import com.cearleysoftware.byob.databinding.ItemSyrupBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
 import com.cearleysoftware.byob.models.SyrupsData
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class SyrupsAdapter(val list: List<SyrupsData>): RecyclerView.Adapter<SyrupsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

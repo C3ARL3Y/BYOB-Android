@@ -17,6 +17,7 @@ import com.cearleysoftware.byob.extensions.getDimension
 import com.cearleysoftware.byob.extensions.safeActivity
 import kotlinx.android.synthetic.main.fragment_milks.*
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
 
 class MilksFragment: Fragment() {
 

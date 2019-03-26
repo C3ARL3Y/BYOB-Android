@@ -17,6 +17,8 @@ import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_syrups.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class SyrupsFragment: Fragment() {
 
     private val mainViewModel by sharedViewModel<MainViewModel>()
