@@ -36,4 +36,10 @@
     <string name="back">Back</string>
     <string name="next">Next</string>
     <string name="milks">Milks</string>
+    <string name="calories_text">Calories: %.01fg</string>
+    <string name="protein_text">Protein: %.01fg</string>
+    <string name="carbs_text">Carbs: %.01fg</string>
+    <string name="fat_text">Fats: %.01fg</string>
+    <string name="sugar_text">Sugar: %.01fg</string>
+
 </resources>

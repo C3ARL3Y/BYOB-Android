@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="milk"
+            type="com.cearleysoftware.byob.models.MilksData">
+        </variable>
+
+    </data>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -20,32 +30,38 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textColor="@color/darkBrown"
+                android:text="@{milk.milk}"
                 tools:text="Whole Milk: 2oz"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Calories: 40.0g"/>
+                android:text="@{@string/calories_text(milk.calories)}"
+                tools:text="Calories: 40.0g"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Protein: 2.0g"/>
+                android:text="@{@string/protein_text(milk.protein)}"
+                tools:text="Protein: 2.0g"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Carbs: 3.0g"/>
+                android:text="@{@string/carbs_text(milk.carbs)}"
+                tools:text="Carbs: 3.0g"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fats: 2.0g"/>
+                android:text="@{@string/fat_text(milk.fats)}"
+                tools:text="Fats: 2.0g"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sugar: 3.0g"/>
+                android:text="@{@string/sugar_text(milk.sugar)}"
+                tools:text="Sugar: 3.0g"/>
 
         </LinearLayout>
 
@@ -62,6 +78,7 @@
                 android:layout_gravity="center">
 
                 <Button
+                    android:id="@+id/minusButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:text="-"
@@ -74,11 +91,13 @@
                     android:background="@color/lightTan"/>
 
                 <TextView
+                    android:id="@+id/amountText"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:gravity="center"
                     android:textColor="@color/lightTan"
-                    android:text="empty"
+                    tools:text="empty"
+                    app:milkAmount="@{milk.count}"
                     android:background="@color/colorPrimaryDark"/>
 
                 <View
@@ -87,6 +106,7 @@
                     android:background="@color/lightTan"/>
 
                 <Button
+                    android:id="@+id/plusButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:text="+"

@@ -35,3 +35,14 @@ fun setImageUrl(view: ImageView, imageUrl: String?){
             .load(imageUrl)
             .into(view)
 }
+
+@BindingAdapter("milkAmount")
+fun setMilkAmount(view: TextView, amount: Int){
+    when(amount){
+        0 -> view.text = "Empty"
+        1 -> view.text = "Light"
+        2 -> view.text = "Regular"
+        3 -> view.text = "Extra"
+        else -> view.text = "Extra"
+    }
+}
