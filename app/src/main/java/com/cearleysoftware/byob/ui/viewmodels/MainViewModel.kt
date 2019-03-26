@@ -11,8 +11,7 @@ import com.cearleysoftware.byob.util.SingleLiveEvent
 
 class MainViewModel: ViewModel() {
 
-    private var currentFavoriteDrink: Drink? = null
-    private var customizableDrink: Drink? = null
+    private var customizableDrinkToSave: CustomDrink? = null
 
     var customDrinkData = CustomDrink()
 
@@ -33,6 +32,8 @@ class MainViewModel: ViewModel() {
     val navigateToSyrups = SingleLiveEvent<Unit>()
 
     val navigateToExtras = SingleLiveEvent<Unit>()
+
+    val navigateToMainFromExtras = SingleLiveEvent<Unit>()
 
     val navigateToImageGallery = SingleLiveEvent<(String, Uri) -> Unit>()
 
@@ -55,22 +56,22 @@ class MainViewModel: ViewModel() {
     val hasFavoriteDrinkToSave: LiveData<Boolean> get() = _hasFavoriteDrinkToSave
 
     val hasCurrentDrink: Boolean
-        get() = currentFavoriteDrink != null
+        get() = customizableDrinkToSave != null
 
     fun baristaPicksButtonClicked(drinkType: String){
         _navigateToViewDrinks.value = drinkType
     }
 
     fun currentDrinkClicked(){
-        if (currentFavoriteDrink != null) {
+        if (customizableDrinkToSave != null) {
             navigateToFavoriteDrink.call()
         }
     }
 
     fun customizeDrinkClicked(){
-        if (currentFavoriteDrink != null){
-            currentFavoriteDrink = null
-            customizableDrink = null
+        if (customizableDrinkToSave != null){
+            customizableDrinkToSave = null
+            customDrinkData.clear()
         }
         navigateToCoffeeBase.call()
     }
@@ -136,6 +137,15 @@ class MainViewModel: ViewModel() {
         customDrinkData.syrups.clear()
         customDrinkData.syrups.addAll(list)
         navigateToExtras.call()
+    }
+
+    fun extrasNextButtonClicked(index: Int, stringArray: Array<String>) {
+        if (index > -1){
+            val extra = stringArray[index]
+            customDrinkData.extra = extra
+            customizableDrinkToSave = customDrinkData
+            navigateToMainFromExtras.call()
+        }
     }
 
     data class AlertData(val title: String, val message: String)

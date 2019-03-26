@@ -60,6 +60,15 @@ fun Activity?.popBackStack(){
     compatActivity.supportFragmentManager.popBackStack()
 }
 
+fun Activity?.popAllInBackStack(){
+    val compatActivity = this as? AppCompatActivity ?: return
+    val supportFragmentManager = compatActivity.supportFragmentManager
+    val count = supportFragmentManager.backStackEntryCount
+    for (i in 0 until count){
+        supportFragmentManager.popBackStack()
+    }
+}
+
 fun Activity?.isPermissionGranted(permission: String): Boolean{
     val appCompatActivity = this as? AppCompatActivity?: return false
     return ActivityCompat.checkSelfPermission(appCompatActivity, permission) == PackageManager.PERMISSION_GRANTED

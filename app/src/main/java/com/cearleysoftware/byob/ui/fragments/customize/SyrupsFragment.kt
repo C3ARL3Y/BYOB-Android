@@ -53,7 +53,7 @@ class SyrupsFragment: Fragment() {
             return customDrinkSyrups.toList()
         }
         else {
-            val array = resources.getStringArray(R.array.milks_array)
+            val array = resources.getStringArray(R.array.syrups_array)
             val list = ArrayList<SyrupsData>()
             for (syrup in array) {
                 val syrupData = SyrupsData(syrup)

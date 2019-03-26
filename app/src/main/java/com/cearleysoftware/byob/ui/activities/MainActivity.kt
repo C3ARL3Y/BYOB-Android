@@ -72,6 +72,11 @@ class MainActivity : AppCompatActivity() {
 
         })
 
+        viewModel.navigateToMainFromExtras.observe(this, Observer {
+            popAllInBackStack()
+
+        })
+
         viewModel.login.observe(this, Observer { loginData ->
             signIn(loginData)
         })

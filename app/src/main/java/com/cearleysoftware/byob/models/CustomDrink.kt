@@ -4,4 +4,12 @@ package com.cearleysoftware.byob.models
 
 data class CustomDrink(var base: String = "",
                        var milks: ArrayList<MilksData> = ArrayList(),
-                       var syrups: ArrayList<SyrupsData> = ArrayList())
+                       var syrups: ArrayList<SyrupsData> = ArrayList(),
+                       var extra: String = ""){
+
+    fun clear(){
+        base = ""
+        milks.clear()
+        syrups.clear()
+    }
+}
