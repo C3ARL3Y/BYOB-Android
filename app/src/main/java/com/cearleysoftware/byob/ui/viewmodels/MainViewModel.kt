@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cearleysoftware.byob.models.Drink
+import com.cearleysoftware.byob.models.MilksData
 import com.cearleysoftware.byob.models.Nutrients
 import com.cearleysoftware.byob.util.SingleLiveEvent
 
@@ -14,6 +15,8 @@ class MainViewModel: ViewModel() {
 
     private var currentFavoriteDrink: Drink? = null
     private var customizableDrink: Drink? = null
+
+    var customDrinkData = CustomDrinkData()
 
 
     val navigateToViewDrinks: LiveData<String> get() = _navigateToViewDrinks
@@ -27,6 +30,8 @@ class MainViewModel: ViewModel() {
     val navigateToSteps = SingleLiveEvent<List<String>>()
 
     val navigateToNutrients = SingleLiveEvent<Nutrients>()
+
+    val navigateToMilks = SingleLiveEvent<Unit>()
 
     val navigateToImageGallery = SingleLiveEvent<(String, Uri) -> Unit>()
 
@@ -109,7 +114,20 @@ class MainViewModel: ViewModel() {
         showToast.postValue(message)
     }
 
+    fun coffeeBaseNextButtonClicked(index: Int, stringArray: Array<String>) {
+        if (index < 0){
+           showAlertDialog("", "Please select a coffee base")
+        }
+        else {
+            val base = stringArray[index]
+            customDrinkData.base = base
+            navigateToMilks.call()
+        }
+    }
+
     data class AlertData(val title: String, val message: String)
 
     data class LoginData(val email: String, val password: String)
+
+    data class CustomDrinkData(var base: String = "", var milks: ArrayList<MilksData> = ArrayList())
 }

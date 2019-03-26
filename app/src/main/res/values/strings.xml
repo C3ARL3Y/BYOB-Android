@@ -33,4 +33,7 @@
     <string name="fats_hint">Amount of Fats</string>
     <string name="sugar_hint">Amount of Sugar</string>
     <string name="caffeine_hint">Amount of Caffeine</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="milks">Milks</string>
 </resources>

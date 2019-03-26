@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="coffee_bases_array">
+        <item>Hot Coffee</item>
+        <item>Americano Hot/Iced</item>
+        <item>Iced Coffee Unsweet</item>
+        <item>Plain Cold Brew</item>
+        <item>Green Iced Tea Unsweet</item>
+        <item>White Iced Tea Unsweet</item>
+        <item>Blace Iced Tea Unsweet</item>
+        <item>Passion Tango Iced Tea Unsweet</item>
+    </string-array>
+
+    <string-array name="milks_array">
+        <item>Whole Milk: 2oz</item>
+        <item>2% Milk: 2oz</item>
+        <item>1% Milk: 2oz</item>
+        <item>Nonfat (skim): 2oz</item>
+        <item>Half and Half: 2oz</item>
+        <item>Heavy Cream: 2oz</item>
+        <item>Coconut Milk: 2oz</item>
+        <item>Almond Milk: 2oz</item>
+        <item>Soy Milk: 2oz</item>
+
+
+    </string-array>
+
+</resources>

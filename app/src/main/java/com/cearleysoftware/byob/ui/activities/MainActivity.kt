@@ -17,6 +17,8 @@ import com.cearleysoftware.byob.images.GalleryManager
 import com.cearleysoftware.byob.network.api.AuthenticationService
 import com.cearleysoftware.byob.network.api.EmailService
 import com.cearleysoftware.byob.ui.fragments.MainFragment
+import com.cearleysoftware.byob.ui.fragments.customize.CoffeeBaseFragment
+import com.cearleysoftware.byob.ui.fragments.customize.MilksFragment
 import com.cearleysoftware.byob.ui.fragments.picks.*
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -86,8 +88,12 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.navigateToCoffeeBase.observe(this, Observer { drinkType ->
-            Log.d("coffeeBase", "coffeebase")
+            replaceFragment(fragment = CoffeeBaseFragment(), addToBackStack = true)
 
+        })
+
+        viewModel.navigateToMilks.observe(this, Observer {
+            replaceFragment(fragment = MilksFragment(), addToBackStack = true)
         })
 
         viewModel.showToast.observe(this, Observer { message ->
