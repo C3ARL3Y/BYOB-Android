@@ -18,6 +18,7 @@ import com.cearleysoftware.byob.network.api.AuthenticationService
 import com.cearleysoftware.byob.network.api.EmailService
 import com.cearleysoftware.byob.ui.fragments.MainFragment
 import com.cearleysoftware.byob.ui.fragments.customize.CoffeeBaseFragment
+import com.cearleysoftware.byob.ui.fragments.customize.ExtrasFragment
 import com.cearleysoftware.byob.ui.fragments.customize.MilksFragment
 import com.cearleysoftware.byob.ui.fragments.customize.SyrupsFragment
 import com.cearleysoftware.byob.ui.fragments.picks.*
@@ -99,6 +100,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.navigateToSyrups.observe(this, Observer {
             replaceFragment(fragment = SyrupsFragment(), addToBackStack = true)
+        })
+
+        viewModel.navigateToExtras.observe(this, Observer {
+            replaceFragment(fragment = ExtrasFragment(), addToBackStack = true)
         })
 
         viewModel.showToast.observe(this, Observer { message ->

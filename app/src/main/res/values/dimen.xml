@@ -55,4 +55,96 @@
     <item type="dimen" format="float" name="soy_milk_fats">1.0</item>
     <item type="dimen" format="float" name="soy_milk_sugar">3.1</item>
 
+    <!-- Syrups -->
+
+    <item type="dimen" format="float" name="vanilla_calories">1.0</item>
+    <item type="dimen" format="float" name="vanilla_protein">0.0</item>
+    <item type="dimen" format="float" name="vanilla_carbs">0.25</item>
+    <item type="dimen" format="float" name="vanilla_fats">0.0</item>
+    <item type="dimen" format="float" name="vanilla_sugar">0.0</item>
+
+    <item type="dimen" format="float" name="caramel_calories">24.0</item>
+    <item type="dimen" format="float" name="caramel_protein">0.0</item>
+    <item type="dimen" format="float" name="caramel_carbs">5.5</item>
+    <item type="dimen" format="float" name="caramel_fats">0.0</item>
+    <item type="dimen" format="float" name="caramel_sugar">5.0</item>
+
+    <item type="dimen" format="float" name="hazelnut_calories">24.0</item>
+    <item type="dimen" format="float" name="hazelnut_protein">0.0</item>
+    <item type="dimen" format="float" name="hazelnut_carbs">5.5</item>
+    <item type="dimen" format="float" name="hazelnut_fats">0.0</item>
+    <item type="dimen" format="float" name="hazelnut_sugar">0.0</item>
+
+    <item type="dimen" format="float" name="toffee_nut_calories">24.0</item>
+    <item type="dimen" format="float" name="toffee_nut_protein">0.0</item>
+    <item type="dimen" format="float" name="toffee_nut_carbs">5.5</item>
+    <item type="dimen" format="float" name="toffee_nut_fats">0.0</item>
+    <item type="dimen" format="float" name="toffee_nut_sugar">5.0</item>
+
+    <item type="dimen" format="float" name="peppermint_calories">24.0</item>
+    <item type="dimen" format="float" name="peppermint_protein">0.0</item>
+    <item type="dimen" format="float" name="peppermint_carbs">5.5</item>
+    <item type="dimen" format="float" name="peppermint_fats">0.0</item>
+    <item type="dimen" format="float" name="peppermint_sugar">5.0</item>
+
+    <item type="dimen" format="float" name="raspberry_calories">24.0</item>
+    <item type="dimen" format="float" name="raspberry_protein">0.0</item>
+    <item type="dimen" format="float" name="raspberry_carbs">5.5</item>
+    <item type="dimen" format="float" name="raspberry_fats">0.0</item>
+    <item type="dimen" format="float" name="raspberry_sugar">5.0</item>
+
+    <item type="dimen" format="float" name="classic_calories">24.0</item>
+    <item type="dimen" format="float" name="classic_protein">0.0</item>
+    <item type="dimen" format="float" name="classic_carbs">5.5</item>
+    <item type="dimen" format="float" name="classic_fats">0.0</item>
+    <item type="dimen" format="float" name="classic_sugar">5.0</item>
+
+    <item type="dimen" format="float" name="cascara_calories">24.0</item>
+    <item type="dimen" format="float" name="cascara_protein">0.0</item>
+    <item type="dimen" format="float" name="cascara_carbs">5.5</item>
+    <item type="dimen" format="float" name="cascara_fats">0.0</item>
+    <item type="dimen" format="float" name="cascara_sugar">5.0</item>
+
+    <item type="dimen" format="float" name="white_mocha_calories">70.0</item>
+    <item type="dimen" format="float" name="white_mocha_protein">1.5</item>
+    <item type="dimen" format="float" name="white_mocha_carbs">11.5</item>
+    <item type="dimen" format="float" name="white_mocha_fats">1.5</item>
+    <item type="dimen" format="float" name="white_mocha_sugar">11.0</item>
+
+    <item type="dimen" format="float" name="mocha_calories">30.0</item>
+    <item type="dimen" format="float" name="mocha_protein">0.5</item>
+    <item type="dimen" format="float" name="mocha_carbs">6.5</item>
+    <item type="dimen" format="float" name="mocha_fats">0.5</item>
+    <item type="dimen" format="float" name="mocha_sugar">6.0</item>
+
+    <item type="dimen" format="float" name="cinnamon_dolce_calories">0.0</item>
+    <item type="dimen" format="float" name="cinnamon_dolce_protein">0.0</item>
+    <item type="dimen" format="float" name="cinnamon_dolce_carbs">0.0</item>
+    <item type="dimen" format="float" name="cinnamon_dolce_fats">0.0</item>
+    <item type="dimen" format="float" name="cinnamon_dolce_sugar">0.0</item>
+
+    <item type="dimen" format="float" name="pumpkin_spice_calories">0.0</item>
+    <item type="dimen" format="float" name="pumpkin_spice_protein">0.0</item>
+    <item type="dimen" format="float" name="pumpkin_spice_carbs">0.0</item>
+    <item type="dimen" format="float" name="pumpkin_spice_fats">0.0</item>
+    <item type="dimen" format="float" name="pumpkin_spice_sugar">0.0</item>
+
+    <item type="dimen" format="float" name="gingerbread_calories">24.0</item>
+    <item type="dimen" format="float" name="gingerbread_protein">0.0</item>
+    <item type="dimen" format="float" name="gingerbread_carbs">0.0</item>
+    <item type="dimen" format="float" name="gingerbread_fats">0.0</item>
+    <item type="dimen" format="float" name="gingerbread_sugar">5.0</item>
+
+    <item type="dimen" format="float" name="caramel_brulee_calories">0.0</item>
+    <item type="dimen" format="float" name="caramel_brulee_protein">0.0</item>
+    <item type="dimen" format="float" name="caramel_brulee_carbs">0.0</item>
+    <item type="dimen" format="float" name="caramel_brulee_fats">0.0</item>
+    <item type="dimen" format="float" name="caramel_brulee_sugar">0.0</item>
+
+    <item type="dimen" format="float" name="toasted_white_mocha_calories">70.0</item>
+    <item type="dimen" format="float" name="toasted_white_mocha_protein">1.5</item>
+    <item type="dimen" format="float" name="toasted_white_mocha_carbs">11.0</item>
+    <item type="dimen" format="float" name="toasted_white_mocha_fats">1.5</item>
+    <item type="dimen" format="float" name="toasted_white_mocha_sugar">11.0</item>
+
 </resources>

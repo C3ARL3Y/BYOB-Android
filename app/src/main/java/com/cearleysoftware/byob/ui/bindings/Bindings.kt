@@ -46,3 +46,12 @@ fun setMilkAmount(view: TextView, amount: Int){
         else -> view.text = "Extra"
     }
 }
+
+@BindingAdapter("syrupAmount")
+fun setSyrupAmount(view: TextView, amount: Int){
+    when(amount){
+        0 -> view.text = "Empty"
+
+        else -> view.text = "$amount"
+    }
+}

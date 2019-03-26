@@ -4,10 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.cearleysoftware.byob.models.CustomDrink
-import com.cearleysoftware.byob.models.Drink
-import com.cearleysoftware.byob.models.MilksData
-import com.cearleysoftware.byob.models.Nutrients
+import com.cearleysoftware.byob.models.*
 import com.cearleysoftware.byob.util.SingleLiveEvent
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
@@ -34,6 +31,8 @@ class MainViewModel: ViewModel() {
     val navigateToMilks = SingleLiveEvent<Unit>()
 
     val navigateToSyrups = SingleLiveEvent<Unit>()
+
+    val navigateToExtras = SingleLiveEvent<Unit>()
 
     val navigateToImageGallery = SingleLiveEvent<(String, Uri) -> Unit>()
 
@@ -131,6 +130,12 @@ class MainViewModel: ViewModel() {
         customDrinkData.milks.clear()
         customDrinkData.milks.addAll(list)
         navigateToSyrups.call()
+    }
+
+    fun saveSyrups(list: List<SyrupsData>) {
+        customDrinkData.syrups.clear()
+        customDrinkData.syrups.addAll(list)
+        navigateToExtras.call()
     }
 
     data class AlertData(val title: String, val message: String)

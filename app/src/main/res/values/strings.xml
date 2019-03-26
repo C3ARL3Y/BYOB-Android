@@ -41,5 +41,6 @@
     <string name="carbs_text">Carbs: %.01fg</string>
     <string name="fat_text">Fats: %.01fg</string>
     <string name="sugar_text">Sugar: %.01fg</string>
+    <string name="syrups">Syrups</string>
 
 </resources>
