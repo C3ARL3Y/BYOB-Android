@@ -21,6 +21,7 @@ class ExtrasFragment: Fragment() {
 
     private val mainViewModel by sharedViewModel<MainViewModel>()
     private lateinit var stringArray: Array<String>
+    private lateinit var extrasAdapter: ExtrasAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +38,6 @@ class ExtrasFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupUI()
     }
-
-    private lateinit var extrasAdapter: ExtrasAdapter
 
     private fun setupUI() {
         extrasAdapter = ExtrasAdapter()

@@ -46,7 +46,6 @@ class MainFragment: Fragment() {
         }
         val mainActivity = safeActivity as MainActivity
         setupToolbar(mainActivity, toolbar, toolbarTitle)
-       // mainViewModel.customDrinkData.clear()
     }
 
     private fun setupToolbar(mainActivity: MainActivity, toolbar: Toolbar, toolbarTitle: TextView) {

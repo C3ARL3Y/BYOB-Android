@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity() {
     private val authenticationService by inject<AuthenticationService>()
     private val emailService by inject<EmailService>()
     private val disposables = CompositeDisposable()
-    private val helper by inject<CustomDrinkHelper>()
 
     private var binding: MainActivityBinding? = null
 
@@ -52,7 +51,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         authenticationService.attach(this)
         setupUI()
-        Log.d("test",helper.getCustomDrinks().toString())
     }
 
     private fun setupUI() {

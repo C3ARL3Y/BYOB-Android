@@ -176,6 +176,11 @@ class MainViewModel(private val customDrinkHelper: CustomDrinkHelper): ViewModel
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        disposables.clear()
+    }
+
     data class AlertData(val title: String, val message: String)
 
     data class LoginData(val email: String, val password: String)
