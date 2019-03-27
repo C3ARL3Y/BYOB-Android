@@ -43,5 +43,7 @@
     <string name="sugar_text">Sugar: %.01fg</string>
     <string name="syrups">Syrups</string>
     <string name="extras">Extras</string>
+    <string name="favorite_field_text">- %s</string>
+
 
 </resources>

@@ -10,4 +10,5 @@ object Constants {
     const val NUTRIENTS = "nutrients"
     const val READ_EXTERNAL_STORAGE_REQUEST_CODE = 1
     const val GALLERY_REQUEST_CODE = 2
+    const val FAVORITE = "favorite"
 }

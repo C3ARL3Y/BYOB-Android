@@ -1,12 +1,15 @@
 package com.cearleysoftware.byob.models
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
 
+@Parcelize
 @Entity(tableName = "syrups",
         foreignKeys = arrayOf(ForeignKey(
         entity = CustomDrink::class,
@@ -22,4 +25,4 @@ data class SyrupsData(@PrimaryKey(autoGenerate = true)
                       var carbs: Double = 0.0,
                       var fats: Double = 0.0,
                       var sugar: Double = 0.0,
-                      var count: Int = 0)
+                      var count: Int = 0) : Parcelable

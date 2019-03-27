@@ -5,7 +5,7 @@ import io.reactivex.Observable
 
 interface CustomDrinkHelper {
 
-    fun getCustomDrinks(): List<CustomDrink>
+    fun getCustomDrinks(): Observable<List<CustomDrink>>
 
     fun insertCustomDrink(customDrink: CustomDrink): Observable<Boolean>
 }
@@ -13,16 +13,20 @@ interface CustomDrinkHelper {
 class CustomDrinkHelperImplementation(private val customDrinkDao: DrinkDao,
                                       private val milksDao: MilksDao,
                                       private val syrupsDao: SyrupsDao): CustomDrinkHelper {
-    override fun getCustomDrinks(): List<CustomDrink> {
-        val customDrinks = customDrinkDao.getAll()
-        for(drink in customDrinks){
-            val drinkId = drink.drinkId
-            val syrups = syrupsDao.getAllForDrink(drinkId)
-            val milks = milksDao.getAllForDrink(drinkId)
-            drink.syrups.addAll(syrups)
-            drink.milks.addAll(milks)
+    override fun getCustomDrinks(): Observable<List<CustomDrink>> {
+
+        return Observable.create { emitter ->
+            val customDrinks = customDrinkDao.getAll()
+            for(drink in customDrinks){
+                val drinkId = drink.drinkId
+                val syrups = syrupsDao.getAllForDrink(drinkId)
+                val milks = milksDao.getAllForDrink(drinkId)
+                drink.syrups.addAll(syrups)
+                drink.milks.addAll(milks)
+            }
+            emitter.onNext(customDrinks)
         }
-        return customDrinks
+
     }
 
     override fun insertCustomDrink(customDrink: CustomDrink): Observable<Boolean> {
