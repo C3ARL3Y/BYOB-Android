@@ -1,5 +1,7 @@
 package com.cearleysoftware.byob.constants
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 object Constants {
 
     const val DRINK_TYPE = "drinkType"

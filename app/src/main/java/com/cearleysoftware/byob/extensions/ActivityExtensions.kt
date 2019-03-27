@@ -11,6 +11,7 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.cearleysoftware.byob.R
 
@@ -58,6 +59,11 @@ fun Activity?.replaceFragment(
 fun Activity?.popBackStack(){
     val compatActivity = this as? AppCompatActivity ?: return
     compatActivity.supportFragmentManager.popBackStack()
+}
+
+fun Activity?.popAllInBackStack(){
+    val compatActivity = this as? AppCompatActivity ?: return
+    compatActivity.supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 }
 
 fun Activity?.isPermissionGranted(permission: String): Boolean{

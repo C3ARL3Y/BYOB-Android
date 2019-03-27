@@ -7,6 +7,8 @@ import com.cearleysoftware.byob.databinding.ItemDrinkBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
 import com.cearleysoftware.byob.models.Drink
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class DrinkSearchAdapter: RecyclerView.Adapter<DrinkSearchAdapter.ViewHolder>() {
 
     private var drinks: ArrayList<Drink> = ArrayList()

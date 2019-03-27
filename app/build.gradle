@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -49,6 +48,16 @@ dependencies {
     implementation "androidx.cardview:cardview:${versions.cardView}"
     implementation "com.google.android.material:material:${versions.materialComponents}"
     implementation "androidx.core:core-ktx:${versions.ktx}"
+
+    // Arch Components
+    implementation "androidx.legacy:legacy-support-v4:${versions.legacySupport}"
+    implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
+    kapt "androidx.lifecycle:lifecycle-compiler:${versions.lifecycle}"
+
+    implementation "androidx.room:room-runtime:${versions.room}"
+    kapt "androidx.room:room-compiler:${versions.room}"
+
+    kapt "com.android.databinding:compiler:${versions.databinding}"
 
     // RxJava
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"

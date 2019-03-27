@@ -52,6 +52,7 @@
                 android:layout_marginEnd="48dp"
                 style="@style/ButtonAppearance"
                 android:text="Current Drink"
+                android:visibility="gone"
                 android:onClick="@{() -> mainViewModel.currentDrinkClicked()}"/>
 
         </FrameLayout>

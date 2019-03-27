@@ -6,7 +6,10 @@ import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.databinding.ItemStepBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class StepsAdapter(private val steps: List<String>): RecyclerView.Adapter<StepsAdapter.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val viewBinding = parent.inflateWithBinding<ItemStepBinding>(R.layout.item_step)
         return ViewHolder(viewBinding)

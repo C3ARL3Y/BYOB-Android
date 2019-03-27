@@ -14,6 +14,8 @@ import com.cearleysoftware.byob.extensions.isPermissionGranted
 import com.cearleysoftware.byob.extensions.requestPermission
 import timber.log.Timber
 
+//  Copyright © 2019 Cearley Software. All rights reserved.
+
 class GalleryManager(private val context: Application) {
 
     private var onHasExternalStoragePermission: (() -> Unit)? = null
