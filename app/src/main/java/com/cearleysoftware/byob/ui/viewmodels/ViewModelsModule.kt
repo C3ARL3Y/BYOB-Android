@@ -13,4 +13,8 @@ val viewModelsModule = module {
     viewModel {
         CreateDrinkViewModel(get())
     }
+
+    viewModel {
+        FavoritesViewModel(get())
+    }
 }

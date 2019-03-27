@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="favorite"
+            type="com.cearleysoftware.byob.models.CustomDrink">
+        </variable>
+
+    </data>
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightTan">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/nameView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="New Drink"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@{favorite.name}"/>
+
+                <TextView
+                    android:id="@+id/baseView"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    tools:text="- Amerticano"
+                    android:text="@{@string/favorite_field_text(favorite.base)}" />
+
+                <TextView
+                    android:id="@+id/milksView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    app:setMilks="@{favorite.milks}"
+                    tools:text="- 2% Milk\n- Coconut Milk"/>
+
+                <TextView
+                    android:id="@+id/syrupsView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    app:setSyrups="@{favorite.syrups}"
+                    tools:text="- Gingerbread: 1\n- Toffee Nut: 7"/>
+
+                <TextView
+                    android:id="@+id/extrasView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@{@string/favorite_field_text(favorite.extra)}"
+                    tools:text="- Light Carmel Drizzle"/>
+
+                <TextView
+                    android:id="@+id/nutritionView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    app:setNutritionFacts="@{favorite}"
+                    tools:text="Calories: 678\nProtein: 1405\nCarbs: 9205\nSugar: 85.85"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/back"
+            style="@style/ButtonAppearance"/>
+
+    </LinearLayout>
+
+</layout>

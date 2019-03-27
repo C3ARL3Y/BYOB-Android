@@ -50,7 +50,7 @@ class MainViewModel(private val customDrinkHelper: CustomDrinkHelper): ViewModel
     val showAlertDialog: LiveData<AlertData> get() = _showAlertDialog
     private val _showAlertDialog = MutableLiveData<AlertData>()
 
-    val navigateToFavoriteDrink = SingleLiveEvent<Unit>()
+    val navigateToFavoriteDrink = SingleLiveEvent<CustomDrink>()
 
     val navigateToCoffeeBase = SingleLiveEvent<Unit>()
 
@@ -164,6 +164,7 @@ class MainViewModel(private val customDrinkHelper: CustomDrinkHelper): ViewModel
     fun saveCustomDrinkToFavorites(name: String) {
         val drink = customizableDrinkToSave
         if (drink != null) {
+            drink.name = name
             disposables.add(customDrinkHelper.insertCustomDrink(drink)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -179,6 +180,10 @@ class MainViewModel(private val customDrinkHelper: CustomDrinkHelper): ViewModel
     override fun onCleared() {
         super.onCleared()
         disposables.clear()
+    }
+
+    fun favoriteClicked(favorite: CustomDrink) {
+        navigateToFavoriteDrink.value = favorite
     }
 
     data class AlertData(val title: String, val message: String)

@@ -25,6 +25,7 @@ import com.cearleysoftware.byob.ui.fragments.customize.CoffeeBaseFragment
 import com.cearleysoftware.byob.ui.fragments.customize.ExtrasFragment
 import com.cearleysoftware.byob.ui.fragments.customize.MilksFragment
 import com.cearleysoftware.byob.ui.fragments.customize.SyrupsFragment
+import com.cearleysoftware.byob.ui.fragments.favorites.FavoriteDetailsFragment
 import com.cearleysoftware.byob.ui.fragments.picks.*
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -93,9 +94,8 @@ class MainActivity : AppCompatActivity() {
             galleryManager.startGallery(this, onResult)
         })
 
-        viewModel.navigateToFavoriteDrink.observe(this, Observer { drinkType ->
-            Log.d("favoriteDrink", "favoriteDrink")
-
+        viewModel.navigateToFavoriteDrink.observe(this, Observer { favorite ->
+            replaceFragment(fragment = FavoriteDetailsFragment.newInstance(favorite), addToBackStack = true)
         })
 
         viewModel.showSaveToFavoritesDialog.observe(this, Observer {
