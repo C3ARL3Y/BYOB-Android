@@ -56,7 +56,7 @@ class SyrupsFragment: Fragment() {
             val array = resources.getStringArray(R.array.syrups_array)
             val list = ArrayList<SyrupsData>()
             for (syrup in array) {
-                val syrupData = SyrupsData(syrup)
+                val syrupData = SyrupsData(syrup = syrup)
                 val syrupName = syrupData.syrup
                 when(syrupName){
                     SyrupNames.VANILLA -> addVanillaAttributes(syrupData)

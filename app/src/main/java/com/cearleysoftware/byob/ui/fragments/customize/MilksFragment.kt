@@ -56,7 +56,7 @@ class MilksFragment: Fragment() {
             val array = resources.getStringArray(R.array.milks_array)
             val list = ArrayList<MilksData>()
             for (milk in array) {
-                val milkData = MilksData(milk)
+                val milkData = MilksData(milk = milk)
                 val milkName = milkData.milk
                 when(milkName){
                     MilkNames.WHOLE -> addWholeMilkAttributes(milkData)

@@ -41,10 +41,12 @@ class MainFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViewPager(viewpager)
         setupBottomNavigation(bottomNavigation, viewpager)
-
+        addToFavoriteButton.setOnClickListener {
+            mainViewModel.showSaveToFavoritesDialog()
+        }
         val mainActivity = safeActivity as MainActivity
         setupToolbar(mainActivity, toolbar, toolbarTitle)
-        mainViewModel.customDrinkData.clear()
+       // mainViewModel.customDrinkData.clear()
     }
 
     private fun setupToolbar(mainActivity: MainActivity, toolbar: Toolbar, toolbarTitle: TextView) {

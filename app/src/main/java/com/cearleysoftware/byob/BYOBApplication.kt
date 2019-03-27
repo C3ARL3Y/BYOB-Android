@@ -1,6 +1,7 @@
 package com.cearleysoftware.byob
 
 import android.app.Application
+import com.cearleysoftware.byob.database.roomModule
 import com.cearleysoftware.byob.images.imageModule
 import com.cearleysoftware.byob.network.api.networkModule
 import com.cearleysoftware.byob.ui.viewmodels.viewModelsModule
@@ -17,7 +18,8 @@ class BYOBApplication: Application() {
         val modules = listOf(
                 networkModule,
                 viewModelsModule,
-                imageModule
+                imageModule,
+                roomModule
         )
 
         startKoin(

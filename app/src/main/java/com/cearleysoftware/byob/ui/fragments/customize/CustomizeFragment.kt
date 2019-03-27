@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.databinding.FragmentCustomizeBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
@@ -35,13 +36,17 @@ class CustomizeFragment: Fragment() {
     private fun setupUI() {
 
         binding.mainViewModel = mainViewModel
-        if (mainViewModel.hasCurrentDrink){
-            currentDrinkButton.visibility = View.VISIBLE
-            customizeDrinkButton.text = resources.getText(R.string.override_drink)
-        }
-        else{
-            currentDrinkButton.visibility = View.INVISIBLE
-            customizeDrinkButton.text = resources.getText(R.string.customize_drink)
-        }
+
+        mainViewModel.hasFavoriteDrinkToSave.observe(this, Observer { hasDrink ->
+            if (hasDrink){
+                currentDrinkButton.visibility = View.VISIBLE
+                customizeDrinkButton.text = resources.getText(R.string.override_drink)
+            }
+            else{
+                currentDrinkButton.visibility = View.INVISIBLE
+                customizeDrinkButton.text = resources.getText(R.string.customize_drink)
+            }
+        })
+
     }
 }
