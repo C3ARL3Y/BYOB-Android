@@ -18,10 +18,11 @@ import com.cearleysoftware.byob.network.api.DrinksService
 import com.cearleysoftware.byob.ui.adapters.DrinkSearchAdapter
 import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
+import com.cearleysoftware.byob.ui.viewmodels.SearchViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_drink_search.*
+import kotlinx.android.synthetic.main.fragment_view_drinks.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -33,6 +34,7 @@ class ViewDrinksFragment: Fragment() {
     private val authenticationService by inject<AuthenticationService>()
     private val mainViewModel by sharedViewModel<MainViewModel>()
     private val createDrinkViewModel by sharedViewModel<CreateDrinkViewModel>()
+    private val searchViewModel by sharedViewModel<SearchViewModel>()
     private val disposables = CompositeDisposable()
 
     private lateinit var drinksAdapter: DrinkSearchAdapter
@@ -50,7 +52,7 @@ class ViewDrinksFragment: Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View = inflater.inflateTo(R.layout.fragment_drink_search, container)
+    ): View = inflater.inflateTo(R.layout.fragment_view_drinks, container)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -99,6 +101,8 @@ class ViewDrinksFragment: Fragment() {
         createDrinkViewModel.onDrinkRemoveFailed.observe(this, Observer {
             mainViewModel.showToast("Unable to remove drink")
         })
+
+        searchView.setOnClickListener { safeActivity.addFragment(fragment = SearchFragment.newInstance(drinkType)) }
     }
 
     private fun loadDrinks() {

@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import io.reactivex.Observable
 import java.util.*
+import kotlin.collections.ArrayList
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
 
@@ -17,9 +18,30 @@ interface DrinksService{
     fun getDrinks(drinkType: String): Observable<List<Drink>>
 
     fun deleteDrink(drinkType: String, drinkId: String): Observable<Boolean>
+    fun searchDrink(drinkType: String, query: String): Observable<List<Drink>>
 }
 
 class DrinkServiceImplementation(private val database: DatabaseReference, private val imageService: ImageService): DrinksService{
+
+    override fun searchDrink(drinkType: String, query: String): Observable<List<Drink>> {
+        return Observable.create { emitter ->
+            val drinks = ArrayList<Drink>()
+            database.child(drinkType).orderByChild("name").startAt(query).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for (drinkSnapShot in dataSnapshot.children) {
+                        val drink = drinkSnapShot?.getValue(Drink::class.java) ?: continue
+                        drink.id = drinkSnapShot.key ?: ""
+                        drinks.add(drink)
+                    }
+                    emitter.onNext(drinks)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    emitter.onError(error.toException())
+                }
+            })
+        }
+    }
 
     override fun addDrink(drink: Drink, imageUrl: String): Observable<Boolean> {
         return imageService.addImage(imageUrl)

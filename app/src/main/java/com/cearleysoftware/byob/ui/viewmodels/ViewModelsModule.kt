@@ -17,4 +17,8 @@ val viewModelsModule = module {
     viewModel {
         FavoritesViewModel(get())
     }
+
+    viewModel {
+        SearchViewModel(get())
+    }
 }
