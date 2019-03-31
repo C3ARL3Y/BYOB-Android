@@ -44,6 +44,7 @@
     <string name="syrups">Syrups</string>
     <string name="extras">Extras</string>
     <string name="favorite_field_text">- %s</string>
+    <string name="search">Search</string>
 
 
 </resources>
