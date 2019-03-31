@@ -41,6 +41,7 @@ ext.versions = [
         firebase          : "16.0.8",
         firebaseDatabase  : "16.1.0",
         firebaseAuthentication  : "16.2.0",
+        firebaseAdMob    : "17.2.0",
 
         // Third Party
         rxkPrefs          : "1.2.5",

@@ -78,7 +78,7 @@ dependencies {
     implementation "com.google.firebase:firebase-database:${versions.firebaseDatabase}"
     implementation "com.google.firebase:firebase-storage:${versions.firebaseDatabase}"
     implementation "com.google.firebase:firebase-auth:${versions.firebaseAuthentication}"
-
+    implementation "com.google.firebase:firebase-ads:${versions.firebaseAdMob}"
 
     // Debug
     implementation "com.jakewharton.timber:timber:${versions.timber}"
