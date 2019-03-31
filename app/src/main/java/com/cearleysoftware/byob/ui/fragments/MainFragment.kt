@@ -24,6 +24,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import com.google.android.gms.ads.AdRequest
+import kotlinx.android.synthetic.main.view_add.*
+
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
 
@@ -46,6 +49,12 @@ class MainFragment: Fragment() {
         }
         val mainActivity = safeActivity as MainActivity
         setupToolbar(mainActivity, toolbar, toolbarTitle)
+        setupAd()
+    }
+
+    private fun setupAd() {
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
     private fun setupToolbar(mainActivity: MainActivity, toolbar: Toolbar, toolbarTitle: TextView) {
