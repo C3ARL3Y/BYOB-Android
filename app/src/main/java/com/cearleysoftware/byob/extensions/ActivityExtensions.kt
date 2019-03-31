@@ -6,6 +6,7 @@ import android.util.DisplayMetrics
 import android.util.TypedValue
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
@@ -76,6 +77,15 @@ fun Activity.requestPermission(permission: String,
     val appCompatActivity = this as? AppCompatActivity?: return
     ActivityCompat.requestPermissions(appCompatActivity, arrayOf(permission), requestId)
 
+}
+
+fun Activity.showAlertDialog(title: String = "", message: String = ""){
+    AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton("Ok", null)
+            .create()
+            .show()
 }
 
 fun DisplayMetrics.dpToPx(dp: Int): Int {

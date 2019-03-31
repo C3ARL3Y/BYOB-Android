@@ -12,10 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.constants.Constants
-import com.cearleysoftware.byob.extensions.addOnItemClick
-import com.cearleysoftware.byob.extensions.inflateTo
-import com.cearleysoftware.byob.extensions.replaceFragment
-import com.cearleysoftware.byob.extensions.safeActivity
+import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.ui.adapters.DrinkSearchAdapter
 import com.cearleysoftware.byob.ui.viewmodels.SearchViewModel
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -59,7 +56,7 @@ class SearchFragment: Fragment() {
         })
 
         searchViewModel.onSearchResultError.observe(this, Observer { error ->
-            //mainViewModel.showAlertDialog("Error", "Unable to search drinks.")
+            safeActivity.showAlertDialog("Error", "Unable to search drinks.")
         })
 
         etSearch.addTextChangedListener(object : TextWatcher {
