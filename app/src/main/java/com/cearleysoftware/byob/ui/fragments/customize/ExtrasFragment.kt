@@ -47,7 +47,7 @@ class ExtrasFragment: Fragment() {
             adapter = extrasAdapter
         }
 
-        backButton.setOnClickListener { mainViewModel.popBackStack() }
+        backButton.setOnClickListener { safeActivity.onBackPressed() }
 
         nextButton.setOnClickListener {
             val index = extrasAdapter.lastSelectedIndex

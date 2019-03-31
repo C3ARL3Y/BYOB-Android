@@ -42,7 +42,7 @@ class SyrupsFragment: Fragment() {
             adapter = syrupAdapter
         }
 
-        backButton.setOnClickListener { mainViewModel.popBackStack() }
+        backButton.setOnClickListener { safeActivity.onBackPressed() }
         nextButton.setOnClickListener { mainViewModel.saveSyrups(syrupAdapter.list) }
     }
 

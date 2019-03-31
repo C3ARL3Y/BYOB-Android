@@ -11,6 +11,7 @@ import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.extensions.addOnItemClick
 import com.cearleysoftware.byob.extensions.inflateTo
 import com.cearleysoftware.byob.extensions.safeActivity
+import com.cearleysoftware.byob.extensions.showAlertDialog
 import com.cearleysoftware.byob.ui.adapters.FavoritesAdapter
 import com.cearleysoftware.byob.ui.viewmodels.FavoritesViewModel
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
@@ -51,7 +52,7 @@ class FavoritesFragment: Fragment() {
             favoritesAdapter.updateData(results)
         })
         favoritesViewModel.onGetFavoritesError.observe(this, Observer { error ->
-            mainViewModel.showAlertDialog("Error", "Could not load favorites")
+            safeActivity.showAlertDialog("Error", "Could not load favorites")
         })
 
         favoritesViewModel.getFavorites()

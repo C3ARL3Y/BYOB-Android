@@ -42,7 +42,7 @@ class MilksFragment: Fragment() {
             adapter = milkAdapter
         }
 
-        backButton.setOnClickListener { mainViewModel.popBackStack() }
+        backButton.setOnClickListener { safeActivity.onBackPressed() }
         nextButton.setOnClickListener { mainViewModel.saveMilks(milkAdapter.list) }
     }
 
@@ -56,6 +56,7 @@ class MilksFragment: Fragment() {
             val array = resources.getStringArray(R.array.milks_array)
             val list = ArrayList<MilksData>()
             for (milk in array) {
+                //todo: Move this to custom drink viewModel
                 val milkData = MilksData(milk = milk)
                 val milkName = milkData.milk
                 when(milkName){

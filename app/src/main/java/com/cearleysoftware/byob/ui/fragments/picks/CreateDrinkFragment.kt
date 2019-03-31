@@ -13,8 +13,7 @@ import androidx.lifecycle.Observer
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.constants.Constants
 import com.cearleysoftware.byob.databinding.FragmentCreateDrinkBinding
-import com.cearleysoftware.byob.extensions.inflateWithBinding
-import com.cearleysoftware.byob.extensions.loadImage
+import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.models.Drink
 import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
@@ -55,12 +54,23 @@ class CreateDrinkFragment: Fragment() {
 
     private fun setupUI() {
 
-        nutrientsButton.setOnClickListener { mainViewModel.navigateToNutrientsScreen(drink.nutrients) }
-        stepsButton.setOnClickListener { mainViewModel.navigateToStepsScreen(drink.steps) }
-        backButton.setOnClickListener { mainViewModel.popBackStack() }
+        nutrientsButton.setOnClickListener {
+            safeActivity.replaceFragment(
+                    fragment = NutrientsFragment.newInstance(drink.nutrients),
+                    addToBackStack = true
+            )
+        }
+        stepsButton.setOnClickListener {
+            safeActivity.replaceFragment(
+                    fragment = StepsFragment.newInstance(drink.steps),
+                    addToBackStack = true
+            )
+        }
+        backButton.setOnClickListener { safeActivity.onBackPressed() }
         drinkImageView.setOnClickListener {
             mainViewModel.navigateToImageGallery { path: String, _: Uri ->
                 drinkImageView.loadImage(path)
+                drink.imageURL = path
                 createDrinkViewModel.drinkData.imageUrl = path
             }
         }
@@ -101,10 +111,10 @@ class CreateDrinkFragment: Fragment() {
         })
 
         createDrinkViewModel.onDrinkSaved.observe(this, Observer {
-            mainViewModel.popBackStack()
+            safeActivity.onBackPressed()
         })
         createDrinkViewModel.onDrinkSaveFailed.observe(this, Observer {
-            mainViewModel.showAlertDialog("Error", "Could not save drink.")
+            safeActivity.showAlertDialog("Error", "Could not save drink.")
         })
         binding.drink = drink
     }

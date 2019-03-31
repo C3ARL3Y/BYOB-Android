@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.databinding.FragmentAlexBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
+import com.cearleysoftware.byob.extensions.safeActivity
+import com.cearleysoftware.byob.extensions.showAlertDialog
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_alex.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -30,8 +32,8 @@ class AlexFragment: Fragment() {
             val email = emailView.text.toString().trim()
             val password = passwordView.text.toString().trim()
             when {
-                email.isBlank() -> mainViewModel.showAlertDialog("Login error", "You must enter an email")
-                password.isBlank() -> mainViewModel.showAlertDialog("Login error", "You must enter a password")
+                email.isBlank() -> safeActivity.showAlertDialog("Login error", "You must enter an email")
+                password.isBlank() -> safeActivity.showAlertDialog("Login error", "You must enter a password")
                 else -> mainViewModel.login(email, password)
             }
         }
