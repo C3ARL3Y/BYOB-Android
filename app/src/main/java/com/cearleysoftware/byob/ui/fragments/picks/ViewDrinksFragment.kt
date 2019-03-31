@@ -17,8 +17,6 @@ import com.cearleysoftware.byob.network.api.AuthenticationService
 import com.cearleysoftware.byob.network.api.DrinksService
 import com.cearleysoftware.byob.ui.adapters.DrinkSearchAdapter
 import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
-import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
-import com.cearleysoftware.byob.ui.viewmodels.SearchViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -32,9 +30,7 @@ class ViewDrinksFragment: Fragment() {
 
     private val drinksService by inject<DrinksService>()
     private val authenticationService by inject<AuthenticationService>()
-    private val mainViewModel by sharedViewModel<MainViewModel>()
     private val createDrinkViewModel by sharedViewModel<CreateDrinkViewModel>()
-    private val searchViewModel by sharedViewModel<SearchViewModel>()
     private val disposables = CompositeDisposable()
 
     private lateinit var drinksAdapter: DrinkSearchAdapter
@@ -69,9 +65,12 @@ class ViewDrinksFragment: Fragment() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(safeActivity)
             adapter = drinksAdapter
-            addOnItemClick { position, view ->
+            addOnItemClick { position, _ ->
                 val drink = drinksAdapter.getSongForPosition(position)
-                mainViewModel.drinkFromPicksClicked(drink)
+                safeActivity.replaceFragment(
+                        fragment = DrinkFragment.newInstance(drink),
+                        addToBackStack = true
+                )
             }
 
             if (isLoggedIn) {
@@ -83,23 +82,31 @@ class ViewDrinksFragment: Fragment() {
         }
         if (isLoggedIn) {
             newDrinkButton.show()
-            newDrinkButton.setOnClickListener { mainViewModel.navigateToCreateDrink(Drink(type = drinkType)) }
+            newDrinkButton.setOnClickListener {
+                safeActivity.replaceFragment(
+                        fragment = CreateDrinkFragment.newInstance(Drink(type = drinkType)),
+                        addToBackStack = true
+                )
+            }
         }
         else{
             newDrinkButton.hide()
         }
-        doneButton.setOnClickListener { mainViewModel.popBackStack() }
+        doneButton.setOnClickListener { safeActivity.onBackPressed() }
 
         createDrinkViewModel.navigateToCreateDrink.observe(this, Observer { drink ->
-            mainViewModel.navigateToCreateDrink(drink)
+            safeActivity.replaceFragment(
+                    fragment = CreateDrinkFragment.newInstance(drink),
+                    addToBackStack = true
+            )
         })
 
         createDrinkViewModel.onDrinkRemoved.observe(this, Observer {
-            mainViewModel.showToast("Drink removed")
+            safeActivity.showToast("Drink removed")
             loadDrinks()
         })
         createDrinkViewModel.onDrinkRemoveFailed.observe(this, Observer {
-            mainViewModel.showToast("Unable to remove drink")
+            safeActivity.showToast("Unable to remove drink")
         })
 
         searchView.setOnClickListener { safeActivity.addFragment(fragment = SearchFragment.newInstance(drinkType)) }
@@ -108,8 +115,12 @@ class ViewDrinksFragment: Fragment() {
     private fun loadDrinks() {
         disposables.add(drinksService.getDrinks(drinkType)
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe {
+                    progress.visibility = View.VISIBLE
+                }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ drinks ->
+                    progress.visibility = View.GONE
                     drinksAdapter.updateData(drinks)
                 }, { error ->
                     error.printStackTrace()

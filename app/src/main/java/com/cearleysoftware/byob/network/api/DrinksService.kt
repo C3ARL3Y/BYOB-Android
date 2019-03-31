@@ -51,12 +51,12 @@ class DrinkServiceImplementation(private val database: DatabaseReference, privat
                     }
                     Observable.create<Boolean> { emitter ->
                         var id = drink.id
-                        if (id.isBlank()){
-                            id = database.child(drink.type).push().key?: ""
+                        if (id.isBlank()) {
+                            id = database.child(drink.type).push().key ?: ""
                         }
                         val timeStamp = drink.timestamp
-                        if (timeStamp <=0){
-                            drink.timestamp = System.currentTimeMillis()/1000
+                        if (timeStamp <= 0) {
+                            drink.timestamp = System.currentTimeMillis() / 1000
                         }
                         database.child(drink.type).child(id).setValue(drink)
                                 .addOnSuccessListener {

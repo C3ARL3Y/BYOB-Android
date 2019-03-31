@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.constants.Constants
 import com.cearleysoftware.byob.extensions.inflateTo
+import com.cearleysoftware.byob.extensions.safeActivity
 import com.cearleysoftware.byob.models.Nutrients
 import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
@@ -56,7 +57,7 @@ class NutrientsFragment: Fragment() {
         nutrients?.protein = getIntFromText(proteinEditText.text.toString())
         nutrients?.calories = getIntFromText(caloriesEditText.text.toString())
         createDrinkViewModel.drinkData.nutrients = nutrients
-        mainViewModel.popBackStack()
+        safeActivity.onBackPressed()
     }
 
     private fun getIntFromText(value: String): Int {

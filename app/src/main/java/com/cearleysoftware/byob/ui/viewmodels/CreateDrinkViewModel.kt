@@ -17,7 +17,7 @@ import io.reactivex.schedulers.Schedulers
 class CreateDrinkViewModel(private val drinkService: DrinksService): ViewModel() {
 
     val drinkData = CreateDrinkData()
-    val disposables = CompositeDisposable()
+    private val disposables = CompositeDisposable()
 
     val onDrinkSaved = SingleLiveEvent<Unit>()
     val onDrinkSaveFailed = SingleLiveEvent<Unit>()

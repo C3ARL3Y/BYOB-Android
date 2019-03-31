@@ -21,18 +21,6 @@ class MainViewModel(private val customDrinkHelper: CustomDrinkHelper): ViewModel
 
     var customDrinkData = CustomDrink()
 
-    val navigateToViewDrinks: LiveData<String> get() = _navigateToViewDrinks
-    private val _navigateToViewDrinks = MutableLiveData<String>()
-
-    val navigateToDrinkFromPicks: LiveData<Drink> get() = _navigateToDrinkFromPicks
-    private val _navigateToDrinkFromPicks = MutableLiveData<Drink>()
-
-    val navigateToCreateDrink = SingleLiveEvent<Drink>()
-
-    val navigateToSteps = SingleLiveEvent<List<String>>()
-
-    val navigateToNutrients = SingleLiveEvent<Nutrients>()
-
     val navigateToMilks = SingleLiveEvent<Unit>()
 
     val navigateToSyrups = SingleLiveEvent<Unit>()
@@ -54,10 +42,6 @@ class MainViewModel(private val customDrinkHelper: CustomDrinkHelper): ViewModel
 
     val navigateToCoffeeBase = SingleLiveEvent<Unit>()
 
-    val showToast = SingleLiveEvent<String>()
-
-    val popBackStack = SingleLiveEvent<Unit>()
-
     val login = SingleLiveEvent<LoginData>()
 
     val onDrinkSavedToFavorites = SingleLiveEvent<Unit>()
@@ -65,10 +49,6 @@ class MainViewModel(private val customDrinkHelper: CustomDrinkHelper): ViewModel
 
     val hasFavoriteDrinkToSave: LiveData<Boolean> get() = _hasFavoriteDrinkToSave
     private val _hasFavoriteDrinkToSave = MutableLiveData<Boolean>()
-
-    fun baristaPicksButtonClicked(drinkType: String){
-        _navigateToViewDrinks.value = drinkType
-    }
 
     fun currentDrinkClicked(){
         if (customizableDrinkToSave != null) {
@@ -84,32 +64,12 @@ class MainViewModel(private val customDrinkHelper: CustomDrinkHelper): ViewModel
         navigateToCoffeeBase.call()
     }
 
-    fun drinkFromPicksClicked(drink: Drink) {
-        _navigateToDrinkFromPicks.value = drink
-    }
-
-    fun popBackStack() {
-        popBackStack.call()
-    }
-
-    fun navigateToCreateDrink(drink: Drink?) {
-        navigateToCreateDrink.postValue(drink)
-    }
-
     fun navigateToImageGallery(onGalleryResult: (String, Uri) -> Unit){
         navigateToImageGallery.postValue(onGalleryResult)
     }
 
-    fun showAlertDialog(title: String, message: String) {
+    private fun showAlertDialog(title: String, message: String) {
         _showAlertDialog.postValue(AlertData(title, message))
-    }
-
-    fun navigateToStepsScreen(steps: List<String>) {
-        navigateToSteps.postValue(steps)
-    }
-
-    fun navigateToNutrientsScreen(nutrients: Nutrients?) {
-        navigateToNutrients.postValue(nutrients)
     }
 
     fun login(email: String, password: String) {
@@ -118,10 +78,6 @@ class MainViewModel(private val customDrinkHelper: CustomDrinkHelper): ViewModel
 
     fun showAddEmailDialog() {
         showEmailDialog.call()
-    }
-
-    fun showToast(message: String) {
-        showToast.postValue(message)
     }
 
     fun coffeeBaseNextButtonClicked(index: Int, stringArray: Array<String>) {

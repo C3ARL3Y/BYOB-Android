@@ -45,6 +45,8 @@
     <string name="extras">Extras</string>
     <string name="favorite_field_text">- %s</string>
     <string name="search">Search</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
 
 
 </resources>

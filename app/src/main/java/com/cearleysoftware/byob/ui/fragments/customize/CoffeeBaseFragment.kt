@@ -48,7 +48,7 @@ class CoffeeBaseFragment: Fragment() {
             adapter = coffeeBaseAdapter
         }
 
-        backButton.setOnClickListener { mainViewModel.popBackStack() }
+        backButton.setOnClickListener { safeActivity.onBackPressed() }
 
         nextButton.setOnClickListener {
             val index = coffeeBaseAdapter.lastSelectedIndex

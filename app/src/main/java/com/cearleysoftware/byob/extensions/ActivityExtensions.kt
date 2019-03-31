@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.pm.PackageManager
 import android.util.DisplayMetrics
 import android.util.TypedValue
+import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
@@ -57,11 +58,6 @@ fun Activity?.replaceFragment(
             }
 }
 
-fun Activity?.popBackStack(){
-    val compatActivity = this as? AppCompatActivity ?: return
-    compatActivity.supportFragmentManager.popBackStack()
-}
-
 fun Activity?.popAllInBackStack(){
     val compatActivity = this as? AppCompatActivity ?: return
     compatActivity.supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
@@ -86,6 +82,10 @@ fun Activity.showAlertDialog(title: String = "", message: String = ""){
             .setPositiveButton("Ok", null)
             .create()
             .show()
+}
+
+fun Activity.showToast(message: String){
+    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
 
 fun DisplayMetrics.dpToPx(dp: Int): Int {

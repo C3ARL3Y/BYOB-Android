@@ -30,7 +30,6 @@ class StepsFragment: Fragment(){
     private lateinit var stepsAdapter: StepsAdapter
     private lateinit var steps: ArrayList<String>
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
     private val createDrinkViewModel by sharedViewModel<CreateDrinkViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +62,7 @@ class StepsFragment: Fragment(){
 
         doneButton.setOnClickListener {
             createDrinkViewModel.drinkData.steps = steps
-            mainViewModel.popBackStack()
+            safeActivity.onBackPressed()
         }
 
         addStepButton.setOnClickListener { showAddStepDialog() }

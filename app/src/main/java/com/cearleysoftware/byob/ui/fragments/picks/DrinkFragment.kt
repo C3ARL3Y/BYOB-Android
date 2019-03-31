@@ -10,6 +10,7 @@ import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.constants.Constants
 import com.cearleysoftware.byob.databinding.FragmentViewPicksDrinkBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
+import com.cearleysoftware.byob.extensions.safeActivity
 import com.cearleysoftware.byob.models.Drink
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_view_picks_drink.*
@@ -44,7 +45,7 @@ class DrinkFragment: Fragment() {
 
     private fun setupUI() {
         binding.drink = drink
-        backButton.setOnClickListener { mainViewModel.popBackStack() }
+        backButton.setOnClickListener { safeActivity.onBackPressed() }
     }
 
     companion object {

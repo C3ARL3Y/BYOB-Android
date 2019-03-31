@@ -10,6 +10,7 @@ import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.constants.Constants
 import com.cearleysoftware.byob.databinding.FragmentFavoriteDetailsBinding
 import com.cearleysoftware.byob.extensions.inflateWithBinding
+import com.cearleysoftware.byob.extensions.safeActivity
 import com.cearleysoftware.byob.models.CustomDrink
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_favorite_details.*
@@ -41,7 +42,7 @@ class FavoriteDetailsFragment: Fragment() {
 
     private fun setupUI() {
         binding.favorite = favorite
-        backButton.setOnClickListener { mainViewModel.popBackStack() }
+        backButton.setOnClickListener { safeActivity.onBackPressed() }
     }
 
 

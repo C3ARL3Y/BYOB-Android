@@ -55,26 +55,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        viewModel.navigateToViewDrinks.observe(this, Observer { drinkType ->
-            replaceFragment(fragment = ViewDrinksFragment.newInstance(drinkType), addToBackStack = true)
-        })
 
-        viewModel.navigateToDrinkFromPicks.observe(this, Observer { drink ->
-            replaceFragment(fragment = DrinkFragment.newInstance(drink), addToBackStack = true)
-        })
-
-        viewModel.navigateToCreateDrink.observe(this, Observer { drink ->
-            replaceFragment(fragment = CreateDrinkFragment.newInstance(drink), addToBackStack = true)
-        })
-
-        viewModel.navigateToSteps.observe(this, Observer { steps ->
-            replaceFragment(fragment = StepsFragment.newInstance(steps), addToBackStack = true)
-
-        })
-
-        viewModel.navigateToNutrients.observe(this, Observer { nutrients ->
-            replaceFragment(fragment = NutrientsFragment.newInstance(nutrients), addToBackStack = true)
-
+        viewModel.showAlertDialog.observe(this, Observer { alertData ->
+            showAlertDialog(alertData.title, alertData.message)
         })
 
         viewModel.navigateToMainFromExtras.observe(this, Observer {
@@ -117,23 +100,6 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.navigateToExtras.observe(this, Observer {
             replaceFragment(fragment = ExtrasFragment(), addToBackStack = true)
-        })
-
-        viewModel.showToast.observe(this, Observer { message ->
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-        })
-
-        viewModel.showAlertDialog.observe(this, Observer { alertData ->
-            AlertDialog.Builder(this)
-                    .setTitle(alertData.title)
-                    .setMessage(alertData.message)
-                    .setPositiveButton("Ok", null)
-                    .create()
-                    .show()
-        })
-
-        viewModel.popBackStack.observe(this, Observer {
-            popBackStack()
         })
 
         replaceFragment(fragment = MainFragment())
