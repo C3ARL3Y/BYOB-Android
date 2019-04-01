@@ -70,7 +70,6 @@ class CustomDrinkViewModel(private val customDrinkHelper: CustomDrinkHelper): Vi
     fun saveSyrups(list: List<SyrupsData>) {
         customDrinkData.syrups.clear()
         customDrinkData.syrups.addAll(list)
-        // todo: call this in fragment. navigateToExtras.call()
     }
 
     fun clearCustomDrink() {

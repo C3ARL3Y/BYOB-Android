@@ -23,7 +23,6 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class CoffeeBaseFragment: Fragment() {
 
     private lateinit var coffeeBaseAdapter: CoffeeBaseAdapter
-   // private val mainViewModel by sharedViewModel<MainViewModel>()
     private val customDrinkViewModel by sharedViewModel<CustomDrinkViewModel>()
 
     private lateinit var stringArray: Array<String>
