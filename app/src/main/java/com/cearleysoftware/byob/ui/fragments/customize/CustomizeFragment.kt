@@ -8,7 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.databinding.FragmentCustomizeBinding
+import com.cearleysoftware.byob.extensions.inflateTo
 import com.cearleysoftware.byob.extensions.inflateWithBinding
+import com.cearleysoftware.byob.extensions.replaceFragment
+import com.cearleysoftware.byob.extensions.safeActivity
+import com.cearleysoftware.byob.ui.fragments.favorites.FavoriteDetailsFragment
+import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
+import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_customize.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -17,16 +23,13 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class CustomizeFragment: Fragment() {
 
-    private lateinit var binding: FragmentCustomizeBinding
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val customDrinkViewModel by sharedViewModel<CustomDrinkViewModel>()
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
-            savedInstanceState: Bundle?): View{
-        binding = inflater.inflateWithBinding(R.layout.fragment_customize, container)
-        return binding.root
-    }
+            savedInstanceState: Bundle?
+    ): View = inflater.inflateTo(R.layout.fragment_customize, container)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,9 +38,17 @@ class CustomizeFragment: Fragment() {
 
     private fun setupUI() {
 
-        binding.mainViewModel = mainViewModel
-
-        mainViewModel.hasFavoriteDrinkToSave.observe(this, Observer { hasDrink ->
+        currentDrinkButton.setOnClickListener {
+            val drink = customDrinkViewModel.customizableDrinkToSave
+            if (drink != null) {
+                safeActivity.replaceFragment(fragment = FavoriteDetailsFragment.newInstance(drink), addToBackStack = true)
+            }
+        }
+        customizeDrinkButton.setOnClickListener {
+            customDrinkViewModel.clearCustomDrink()
+            safeActivity.replaceFragment(fragment = CoffeeBaseFragment(), addToBackStack = true)
+        }
+        customDrinkViewModel.hasFavoriteDrinkToSave.observe(this, Observer { hasDrink ->
             if (hasDrink){
                 currentDrinkButton.visibility = View.VISIBLE
                 customizeDrinkButton.text = resources.getText(R.string.override_drink)

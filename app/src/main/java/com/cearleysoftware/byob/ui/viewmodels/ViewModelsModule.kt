@@ -7,7 +7,7 @@ import org.koin.dsl.module.module
 
 val viewModelsModule = module {
     viewModel {
-        MainViewModel(get())
+        MainViewModel()
     }
 
     viewModel {
@@ -20,5 +20,9 @@ val viewModelsModule = module {
 
     viewModel {
         SearchViewModel(get())
+    }
+
+    viewModel {
+        CustomDrinkViewModel(get())
     }
 }

@@ -1,9 +1,11 @@
 package com.cearleysoftware.byob.ui.fragments
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -12,13 +14,16 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.cearleysoftware.byob.R
+import com.cearleysoftware.byob.extensions.dpToPx
 import com.cearleysoftware.byob.extensions.inflateTo
 import com.cearleysoftware.byob.extensions.safeActivity
+import com.cearleysoftware.byob.extensions.showAlertDialog
 import com.cearleysoftware.byob.ui.activities.MainActivity
 import com.cearleysoftware.byob.ui.fragments.alex.AlexFragment
 import com.cearleysoftware.byob.ui.fragments.customize.CustomizeFragment
 import com.cearleysoftware.byob.ui.fragments.favorites.FavoritesFragment
 import com.cearleysoftware.byob.ui.fragments.picks.BaristaPicksFragment
+import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -33,6 +38,7 @@ import kotlinx.android.synthetic.main.view_add.*
 class MainFragment: Fragment() {
 
     private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val customDrinkViewModel by sharedViewModel<CustomDrinkViewModel>()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -45,8 +51,11 @@ class MainFragment: Fragment() {
         setupViewPager(viewpager)
         setupBottomNavigation(bottomNavigation, viewpager)
         addToFavoriteButton.setOnClickListener {
-            mainViewModel.showSaveToFavoritesDialog()
+            showSaveToFavoritesDialog()
         }
+        customDrinkViewModel.onDrinkSavedToFavoritesFailed.observe(this, Observer {
+            safeActivity.showAlertDialog("Error", "Could not save drink to favorites")
+        })
         val mainActivity = safeActivity as MainActivity
         setupToolbar(mainActivity, toolbar, toolbarTitle)
         setupAd()
@@ -64,7 +73,7 @@ class MainFragment: Fragment() {
             setDisplayHomeAsUpEnabled(false)
         }
         toolbarTitle.text = resources.getText(R.string.barista_picks)
-        mainViewModel.hasFavoriteDrinkToSave.observe(this, Observer { hasDrinkToSave ->
+        customDrinkViewModel.hasFavoriteDrinkToSave.observe(this, Observer { hasDrinkToSave ->
             addToFavoriteButton.visibility = if(hasDrinkToSave) View.VISIBLE else View.GONE
         })
     }
@@ -138,6 +147,25 @@ class MainFragment: Fragment() {
 
         })
         viewPager.setCurrentItem(0, false)
+    }
+
+    private fun showSaveToFavoritesDialog() {
+        val alert = android.app.AlertDialog.Builder(safeActivity)
+        val edittext = EditText(safeActivity)
+        edittext.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        edittext.requestFocus()
+        val padding = resources.displayMetrics.dpToPx(15)
+        edittext.setPadding(padding,padding,padding,padding)
+        alert.setTitle("Set Drink Name")
+
+        alert.setView(edittext)
+
+        alert.setPositiveButton("Done") { _, _ ->
+            val name = edittext.text.toString().trim()
+            customDrinkViewModel.saveCustomDrinkToFavorites(name)
+        }
+        alert.create()
+        alert.show()
     }
 
     internal class Adapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {

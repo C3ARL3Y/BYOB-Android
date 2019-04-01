@@ -15,24 +15,23 @@ import io.reactivex.schedulers.Schedulers
 class CustomDrinkViewModel(private val customDrinkHelper: CustomDrinkHelper): ViewModel() {
 
     var customDrinkData = CustomDrink()
-    private var customizableDrinkToSave: CustomDrink? = null
-    val navigateToMainFromExtras = SingleLiveEvent<Unit>()
+    var customizableDrinkToSave: CustomDrink? = null
     val onDrinkSavedToFavorites = SingleLiveEvent<Unit>()
     val onDrinkSavedToFavoritesFailed = SingleLiveEvent<Unit>()
     val navigateToMilks = SingleLiveEvent<Unit>()
+    val showAlertDialog = SingleLiveEvent<AlertData>()
 
     private val disposables = CompositeDisposable()
 
     val hasFavoriteDrinkToSave: LiveData<Boolean> get() = _hasFavoriteDrinkToSave
     private val _hasFavoriteDrinkToSave = MutableLiveData<Boolean>()
 
-    fun extrasNextButtonClicked(index: Int, stringArray: Array<String>) {
+    fun storeExtra(index: Int, stringArray: Array<String>) {
         if (index > -1){
             val extra = stringArray[index]
             customDrinkData.extra = extra
             customizableDrinkToSave = customDrinkData.copy()
             _hasFavoriteDrinkToSave.postValue(true)
-            navigateToMainFromExtras.call()
         }
     }
 
@@ -54,7 +53,7 @@ class CustomDrinkViewModel(private val customDrinkHelper: CustomDrinkHelper): Vi
 
     fun coffeeBaseNextButtonClicked(index: Int, stringArray: Array<String>) {
         if (index < 0){
-            //showAlertDialog("", "Please select a coffee base")
+            showAlertDialog.postValue(AlertData("", "Please select a coffee base"))
         }
         else {
             val base = stringArray[index]
@@ -66,7 +65,6 @@ class CustomDrinkViewModel(private val customDrinkHelper: CustomDrinkHelper): Vi
     fun saveMilks(list: List<MilksData>) {
         customDrinkData.milks.clear()
         customDrinkData.milks.addAll(list)
-        // todo: call this in fragment. navigateToSyrups.call()
     }
 
     fun saveSyrups(list: List<SyrupsData>) {
@@ -74,4 +72,14 @@ class CustomDrinkViewModel(private val customDrinkHelper: CustomDrinkHelper): Vi
         customDrinkData.syrups.addAll(list)
         // todo: call this in fragment. navigateToExtras.call()
     }
+
+    fun clearCustomDrink() {
+        if (customizableDrinkToSave != null){
+            customizableDrinkToSave = null
+            customDrinkData.clear()
+        }
+    }
+
+    data class AlertData(val title: String, val message: String)
+
 }

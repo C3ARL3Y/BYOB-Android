@@ -20,7 +20,6 @@ class FavoriteDetailsFragment: Fragment() {
 
     private var favorite: CustomDrink? = null
     private lateinit var binding: FragmentFavoriteDetailsBinding
-    private val mainViewModel by sharedViewModel<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,32 +1,20 @@
 package com.cearleysoftware.byob.ui.activities
 
-import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.room.Room
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.constants.Constants
-import com.cearleysoftware.byob.database.BYOBDatabase
-import com.cearleysoftware.byob.database.CustomDrinkHelper
 import com.cearleysoftware.byob.databinding.MainActivityBinding
 import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.images.GalleryManager
 import com.cearleysoftware.byob.network.api.AuthenticationService
 import com.cearleysoftware.byob.network.api.EmailService
 import com.cearleysoftware.byob.ui.fragments.MainFragment
-import com.cearleysoftware.byob.ui.fragments.customize.CoffeeBaseFragment
-import com.cearleysoftware.byob.ui.fragments.customize.ExtrasFragment
-import com.cearleysoftware.byob.ui.fragments.customize.MilksFragment
-import com.cearleysoftware.byob.ui.fragments.customize.SyrupsFragment
-import com.cearleysoftware.byob.ui.fragments.favorites.FavoriteDetailsFragment
-import com.cearleysoftware.byob.ui.fragments.picks.*
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -56,15 +44,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupUI() {
 
-        viewModel.showAlertDialog.observe(this, Observer { alertData ->
-            showAlertDialog(alertData.title, alertData.message)
-        })
-
-        viewModel.navigateToMainFromExtras.observe(this, Observer {
-            popAllInBackStack()
-
-        })
-
         viewModel.login.observe(this, Observer { loginData ->
             signIn(loginData)
         })
@@ -77,54 +56,9 @@ class MainActivity : AppCompatActivity() {
             galleryManager.startGallery(this, onResult)
         })
 
-        viewModel.navigateToFavoriteDrink.observe(this, Observer { favorite ->
-            replaceFragment(fragment = FavoriteDetailsFragment.newInstance(favorite), addToBackStack = true)
-        })
-
-        viewModel.showSaveToFavoritesDialog.observe(this, Observer {
-            showSaveToFavoritesDialog()
-        })
-
-        viewModel.navigateToCoffeeBase.observe(this, Observer { drinkType ->
-            replaceFragment(fragment = CoffeeBaseFragment(), addToBackStack = true)
-
-        })
-
-        viewModel.navigateToMilks.observe(this, Observer {
-            replaceFragment(fragment = MilksFragment(), addToBackStack = true)
-        })
-
-        viewModel.navigateToSyrups.observe(this, Observer {
-            replaceFragment(fragment = SyrupsFragment(), addToBackStack = true)
-        })
-
-        viewModel.navigateToExtras.observe(this, Observer {
-            replaceFragment(fragment = ExtrasFragment(), addToBackStack = true)
-        })
-
         replaceFragment(fragment = MainFragment())
 
 
-    }
-
-    private fun showSaveToFavoritesDialog() {
-        val alert = android.app.AlertDialog.Builder(this)
-        val edittext = EditText(this)
-        edittext.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-        edittext.requestFocus()
-        val padding = resources.displayMetrics.dpToPx(15)
-        edittext.setPadding(padding,padding,padding,padding)
-        alert.setTitle("Set Drink Name")
-
-        alert.setView(edittext)
-
-        alert.setPositiveButton("Done") { _, _ ->
-            val name = edittext.text.toString().trim()
-            viewModel.saveCustomDrinkToFavorites(name)
-
-        }
-        alert.create()
-        alert.show()
     }
 
     private fun showEmailDialog() {
