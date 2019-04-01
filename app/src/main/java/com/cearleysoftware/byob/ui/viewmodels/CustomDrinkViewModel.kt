@@ -76,6 +76,7 @@ class CustomDrinkViewModel(private val customDrinkHelper: CustomDrinkHelper): Vi
         if (customizableDrinkToSave != null){
             customizableDrinkToSave = null
             customDrinkData.clear()
+            _hasFavoriteDrinkToSave.postValue(false)
         }
     }
 
