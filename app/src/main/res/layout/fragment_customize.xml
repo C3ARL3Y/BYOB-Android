@@ -2,72 +2,136 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="116dp"
-                android:layout_marginEnd="15dp"
-                android:src="@drawable/byob_logo"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/customize_label"/>
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="116dp"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/byob_logo"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/customize_label"/>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/currentDrinkButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginEnd="48dp"
+                    android:textSize="14sp"
+                    style="@style/ButtonAppearance"
+                    android:text="Current Drink"
+                    android:visibility="gone"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/customizeDrinkButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginEnd="48dp"
+                    style="@style/ButtonAppearance"
+                    android:textSize="14sp"
+                    android:text="@string/customize_drink"
+                    android:layout_gravity="center"/>
+
+            </FrameLayout>
 
         </LinearLayout>
 
-        <FrameLayout
+        <LinearLayout
+            android:id="@+id/nameView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:background="@android:color/white">
 
-            <Button
-                android:id="@+id/currentDrinkButton"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center_horizontal"
+                android:text="Set drink name"/>
+
+            <EditText
+                android:id="@+id/nameEditText"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="48dp"
-                android:layout_marginEnd="48dp"
-                android:textSize="14sp"
-                style="@style/ButtonAppearance"
-                android:text="Current Drink"
-                android:visibility="gone"/>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:lines="1"
+                android:hint="@string/name"/>
 
-        </FrameLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_horizontal">
+                <Button
+                    android:id="@+id/cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/cancel"/>
 
-            <Button
-                android:id="@+id/customizeDrinkButton"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="48dp"
-                android:layout_marginEnd="48dp"
-                style="@style/ButtonAppearance"
-                android:textSize="14sp"
-                android:text="@string/customize_drink"
-                android:layout_gravity="center"/>
+                <Button
+                    android:id="@+id/nameDoneButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:enabled="false"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/done"/>
 
-        </FrameLayout>
+            </LinearLayout>
 
-    </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
 
 </layout>

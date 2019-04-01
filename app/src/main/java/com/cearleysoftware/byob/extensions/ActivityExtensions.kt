@@ -1,9 +1,11 @@
 package com.cearleysoftware.byob.extensions
 
 import android.app.Activity
+import android.content.Context
 import android.content.pm.PackageManager
 import android.util.DisplayMetrics
 import android.util.TypedValue
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
@@ -90,4 +92,10 @@ fun Activity.showToast(message: String){
 
 fun DisplayMetrics.dpToPx(dp: Int): Int {
     return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), this ))
+}
+
+fun Activity.hideKeyBoard() {
+    val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputManager.hideSoftInputFromWindow(this.currentFocus?.windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS)
 }
