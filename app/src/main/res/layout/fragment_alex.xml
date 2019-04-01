@@ -33,15 +33,6 @@
                     android:text="@string/alex_about"
                     android:textColor="@color/colorPrimaryDark" />
 
-                <ImageView
-                    android:id="@+id/emailListButton"
-                    android:layout_width="128dp"
-                    android:layout_height="128dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginBottom="32dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/knine"/>
-
                 <EditText
                     android:id="@+id/emailView"
                     android:layout_width="match_parent"
@@ -49,6 +40,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="15dp"
+                    android:layout_marginTop="40dp"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:gravity="center"

@@ -1,9 +1,7 @@
 package com.cearleysoftware.byob.ui.fragments.alex
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.databinding.FragmentAlexBinding
@@ -38,8 +36,18 @@ class AlexFragment: Fragment() {
             }
         }
 
-        emailListButton.setOnClickListener {
-            mainViewModel.showAddEmailDialog()
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_alex, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menu_item_sign_up -> mainViewModel.showAddEmailDialog()
         }
+        return super.onOptionsItemSelected(item)
     }
 }

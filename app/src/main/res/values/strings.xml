@@ -48,6 +48,7 @@
     <string name="name">Name</string>
     <string name="description">Description</string>
     <string name="cancel">Cancel</string>
+    <string name="sign_up">Signup</string>
 
 
 </resources>

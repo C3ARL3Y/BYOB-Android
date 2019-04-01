@@ -74,15 +74,20 @@ class MainActivity : AppCompatActivity() {
 
         alert.setPositiveButton("Ok") { _, _ ->
             val email = edittext.text.toString().trim()
-            disposables.add(emailService.sendEmail(email)// todo: Move to ViewModel in AlexFragment
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        Toast.makeText(this, "Email sent", Toast.LENGTH_LONG).show()
-                    }, { error ->
-                        error.printStackTrace()
-                        Toast.makeText(this, "Error sending email", Toast.LENGTH_LONG).show()
-                    }))
+            if (email.isNotBlank()) {
+                disposables.add(emailService.sendEmail(email)// todo: Move to ViewModel in AlexFragment
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            Toast.makeText(this, "Email sent", Toast.LENGTH_LONG).show()
+                        }, { error ->
+                            error.printStackTrace()
+                            Toast.makeText(this, "Error sending email", Toast.LENGTH_LONG).show()
+                        }))
+            }
+            else{
+                showToast("You must enter a valid email.")
+            }
         }
         alert.create()
         alert.show()
