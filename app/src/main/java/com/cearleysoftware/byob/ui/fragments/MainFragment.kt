@@ -14,10 +14,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.cearleysoftware.byob.R
-import com.cearleysoftware.byob.extensions.dpToPx
-import com.cearleysoftware.byob.extensions.inflateTo
-import com.cearleysoftware.byob.extensions.safeActivity
-import com.cearleysoftware.byob.extensions.showAlertDialog
+import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.ui.activities.MainActivity
 import com.cearleysoftware.byob.ui.fragments.alex.AlexFragment
 import com.cearleysoftware.byob.ui.fragments.customize.CustomizeFragment
@@ -37,7 +34,6 @@ import kotlinx.android.synthetic.main.view_add.*
 
 class MainFragment: Fragment() {
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
     private val customDrinkViewModel by sharedViewModel<CustomDrinkViewModel>()
 
     override fun onCreateView(
@@ -51,7 +47,7 @@ class MainFragment: Fragment() {
         setupViewPager(viewpager)
         setupBottomNavigation(bottomNavigation, viewpager)
         addToFavoriteButton.setOnClickListener {
-            showSaveToFavoritesDialog()
+            customDrinkViewModel.showEnterCustomDrinkNameView.call()
         }
         customDrinkViewModel.onDrinkSavedToFavoritesFailed.observe(this, Observer {
             safeActivity.showAlertDialog("Error", "Could not save drink to favorites")
@@ -147,25 +143,6 @@ class MainFragment: Fragment() {
 
         })
         viewPager.setCurrentItem(0, false)
-    }
-
-    private fun showSaveToFavoritesDialog() {
-        val alert = android.app.AlertDialog.Builder(safeActivity)
-        val edittext = EditText(safeActivity)
-        edittext.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-        edittext.requestFocus()
-        val padding = resources.displayMetrics.dpToPx(15)
-        edittext.setPadding(padding,padding,padding,padding)
-        alert.setTitle("Set Drink Name")
-
-        alert.setView(edittext)
-
-        alert.setPositiveButton("Done") { _, _ ->
-            val name = edittext.text.toString().trim()
-            customDrinkViewModel.saveCustomDrinkToFavorites(name)
-        }
-        alert.create()
-        alert.show()
     }
 
     internal class Adapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {

@@ -1,9 +1,11 @@
 package com.cearleysoftware.byob.extensions
 
 import android.app.Activity
+import android.content.Context
 import android.content.pm.PackageManager
 import android.util.DisplayMetrics
 import android.util.TypedValue
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes

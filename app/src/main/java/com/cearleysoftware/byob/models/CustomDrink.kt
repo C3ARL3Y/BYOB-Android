@@ -22,9 +22,11 @@ data class CustomDrink(@PrimaryKey(autoGenerate = false)
                        var name: String = "Unknown Name") : Parcelable {
 
     fun clear(){
+        drinkId = ""
         base = ""
         milks.clear()
         syrups.clear()
         extra = ""
+        name = ""
     }
 }

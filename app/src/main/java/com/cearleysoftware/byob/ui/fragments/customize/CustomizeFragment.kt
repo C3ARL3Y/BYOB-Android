@@ -1,17 +1,19 @@
 package com.cearleysoftware.byob.ui.fragments.customize
 
+import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.databinding.FragmentCustomizeBinding
-import com.cearleysoftware.byob.extensions.inflateTo
-import com.cearleysoftware.byob.extensions.inflateWithBinding
-import com.cearleysoftware.byob.extensions.replaceFragment
-import com.cearleysoftware.byob.extensions.safeActivity
+import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.ui.fragments.favorites.FavoriteDetailsFragment
 import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
@@ -59,5 +61,38 @@ class CustomizeFragment: Fragment() {
             }
         })
 
+        customDrinkViewModel.showEnterCustomDrinkNameView.observe(this, Observer {
+            nameView.show()
+            nameEditText.requestFocus()
+        })
+
+        nameDoneButton.setOnClickListener { view ->
+            val name = nameEditText.text.toString().trim()
+            customDrinkViewModel.saveCustomDrinkToFavorites(name)
+            hideEnterNameView(view)
+        }
+
+        cancel.setOnClickListener { hideEnterNameView(cancel) }
+
+        nameEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
+                nameDoneButton.isEnabled = text.isNotBlank()
+            }
+        })
+    }
+
+    private fun hideEnterNameView(view: View) {
+        nameEditText.setText("")
+        nameEditText.clearFocus()
+        val inputManager = safeActivity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(view.windowToken, 0)
+        nameView.hide()
     }
 }
