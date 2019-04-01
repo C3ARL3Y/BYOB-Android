@@ -8,13 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cearleysoftware.byob.R
-import com.cearleysoftware.byob.extensions.addOnItemClick
-import com.cearleysoftware.byob.extensions.inflateTo
-import com.cearleysoftware.byob.extensions.safeActivity
-import com.cearleysoftware.byob.extensions.showAlertDialog
+import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.ui.adapters.FavoritesAdapter
+import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.FavoritesViewModel
-import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_favorites.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -22,7 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class FavoritesFragment: Fragment() {
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val customDrinkViewModel by sharedViewModel<CustomDrinkViewModel>()
     private val favoritesViewModel by sharedViewModel<FavoritesViewModel>()
     private lateinit var favoritesAdapter: FavoritesAdapter
 
@@ -44,7 +41,9 @@ class FavoritesFragment: Fragment() {
             adapter = favoritesAdapter
             addOnItemClick { position, view ->
                 val favorite = favoritesAdapter.getFavoriteForPosition(position)
-                mainViewModel.favoriteClicked(favorite)
+                safeActivity.addFragment(
+                        fragment = FavoriteDetailsFragment.newInstance(favorite)
+                )
             }
         }
 
@@ -53,6 +52,10 @@ class FavoritesFragment: Fragment() {
         })
         favoritesViewModel.onGetFavoritesError.observe(this, Observer { error ->
             safeActivity.showAlertDialog("Error", "Could not load favorites")
+        })
+
+        customDrinkViewModel.onDrinkSavedToFavorites.observe(this, Observer {
+            favoritesViewModel.getFavorites()
         })
 
         favoritesViewModel.getFavorites()

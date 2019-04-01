@@ -2,15 +2,6 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-
-        <variable
-            name="mainViewModel"
-            type="com.cearleysoftware.byob.ui.viewmodels.MainViewModel">
-
-        </variable>
-
-    </data>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -19,7 +10,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -45,14 +38,14 @@
             <Button
                 android:id="@+id/currentDrinkButton"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="48dp"
                 android:layout_marginEnd="48dp"
+                android:textSize="14sp"
                 style="@style/ButtonAppearance"
                 android:text="Current Drink"
-                android:visibility="gone"
-                android:onClick="@{() -> mainViewModel.currentDrinkClicked()}"/>
+                android:visibility="gone"/>
 
         </FrameLayout>
 
@@ -65,13 +58,13 @@
             <Button
                 android:id="@+id/customizeDrinkButton"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="48dp"
                 android:layout_marginEnd="48dp"
                 style="@style/ButtonAppearance"
+                android:textSize="14sp"
                 android:text="@string/customize_drink"
-                android:layout_gravity="center"
-                android:onClick="@{() -> mainViewModel.customizeDrinkClicked()}"/>
+                android:layout_gravity="center"/>
 
         </FrameLayout>
 

@@ -8,10 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.extensions.inflateTo
+import com.cearleysoftware.byob.extensions.popAllInBackStack
 import com.cearleysoftware.byob.extensions.safeActivity
 import com.cearleysoftware.byob.models.ExtrasData
 import com.cearleysoftware.byob.ui.adapters.ExtrasAdapter
-import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
+import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
 import kotlinx.android.synthetic.main.fragment_extras.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -19,7 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ExtrasFragment: Fragment() {
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val customDrinkViewModel by sharedViewModel<CustomDrinkViewModel>()
     private lateinit var stringArray: Array<String>
     private lateinit var extrasAdapter: ExtrasAdapter
 
@@ -51,14 +52,15 @@ class ExtrasFragment: Fragment() {
 
         nextButton.setOnClickListener {
             val index = extrasAdapter.lastSelectedIndex
-            mainViewModel.extrasNextButtonClicked(index, stringArray)
+            customDrinkViewModel.storeExtra(index, stringArray)
+            safeActivity.popAllInBackStack()
         }
     }
 
     private fun getList(): ArrayList<ExtrasData> {
         val dataList = ArrayList<ExtrasData>()
         val array = stringArray
-        val extra = mainViewModel.customDrinkData.extra
+        val extra = customDrinkViewModel.customDrinkData.extra
 
         array.forEachIndexed { index, string ->
             val data = ExtrasData(string)

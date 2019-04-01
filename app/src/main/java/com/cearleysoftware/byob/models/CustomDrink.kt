@@ -25,5 +25,6 @@ data class CustomDrink(@PrimaryKey(autoGenerate = false)
         base = ""
         milks.clear()
         syrups.clear()
+        extra = ""
     }
 }

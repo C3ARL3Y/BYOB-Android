@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.extensions.inflateTo
+import com.cearleysoftware.byob.extensions.replaceFragment
 import com.cearleysoftware.byob.extensions.safeActivity
+import com.cearleysoftware.byob.extensions.showAlertDialog
 import com.cearleysoftware.byob.ui.adapters.CoffeeBaseAdapter
+import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_coffee_base.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -19,7 +23,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class CoffeeBaseFragment: Fragment() {
 
     private lateinit var coffeeBaseAdapter: CoffeeBaseAdapter
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val customDrinkViewModel by sharedViewModel<CustomDrinkViewModel>()
 
     private lateinit var stringArray: Array<String>
 
@@ -48,18 +52,25 @@ class CoffeeBaseFragment: Fragment() {
             adapter = coffeeBaseAdapter
         }
 
+        customDrinkViewModel.navigateToMilks.observe(this, Observer {
+            safeActivity.replaceFragment(fragment = MilksFragment(), addToBackStack = true)
+        })
+        customDrinkViewModel.showAlertDialog.observe(this, Observer { alertData ->
+            safeActivity.showAlertDialog(alertData.title, alertData.message)
+        })
+
         backButton.setOnClickListener { safeActivity.onBackPressed() }
 
         nextButton.setOnClickListener {
             val index = coffeeBaseAdapter.lastSelectedIndex
-            mainViewModel.coffeeBaseNextButtonClicked(index, stringArray)
+            customDrinkViewModel.coffeeBaseNextButtonClicked(index, stringArray)
         }
     }
 
     private fun getList(): ArrayList<CoffeeBaseData> {
         val dataList = ArrayList<CoffeeBaseData>()
         val array = stringArray
-        val base = mainViewModel.customDrinkData.base
+        val base = customDrinkViewModel.customDrinkData.base
 
         array.forEachIndexed { index, string ->
             val data = CoffeeBaseData(string)

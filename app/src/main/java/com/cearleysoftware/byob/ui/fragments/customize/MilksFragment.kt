@@ -14,14 +14,16 @@ import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cearleysoftware.byob.extensions.getDimension
+import com.cearleysoftware.byob.extensions.replaceFragment
 import com.cearleysoftware.byob.extensions.safeActivity
+import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
 import kotlinx.android.synthetic.main.fragment_milks.*
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
 
 class MilksFragment: Fragment() {
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val customDrinkViewModel by sharedViewModel<CustomDrinkViewModel>()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -43,11 +45,14 @@ class MilksFragment: Fragment() {
         }
 
         backButton.setOnClickListener { safeActivity.onBackPressed() }
-        nextButton.setOnClickListener { mainViewModel.saveMilks(milkAdapter.list) }
+        nextButton.setOnClickListener {
+            customDrinkViewModel.saveMilks(milkAdapter.list)
+            safeActivity.replaceFragment(fragment = SyrupsFragment(), addToBackStack = true)
+        }
     }
 
     private fun getList(): List<MilksData> {
-        val customDrinkMilks = mainViewModel.customDrinkData.milks
+        val customDrinkMilks = customDrinkViewModel.customDrinkData.milks
 
         if (customDrinkMilks.isNotEmpty()){
             return customDrinkMilks.toList()
