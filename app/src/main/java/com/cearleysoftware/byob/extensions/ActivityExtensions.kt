@@ -93,9 +93,3 @@ fun Activity.showToast(message: String){
 fun DisplayMetrics.dpToPx(dp: Int): Int {
     return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), this ))
 }
-
-fun Activity.hideKeyBoard() {
-    val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    inputManager.hideSoftInputFromWindow(this.currentFocus?.windowToken,
-            InputMethodManager.HIDE_NOT_ALWAYS)
-}

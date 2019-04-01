@@ -86,11 +86,6 @@ class CustomizeFragment: Fragment() {
                 nameDoneButton.isEnabled = text.isNotBlank()
             }
         })
-
-        safeActivity.addOnBackPressedCallback {
-
-            false
-        }
     }
 
     private fun hideEnterNameView(view: View) {
