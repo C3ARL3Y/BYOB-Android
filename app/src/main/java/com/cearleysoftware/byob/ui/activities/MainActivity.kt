@@ -44,10 +44,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupUI() {
 
-        viewModel.login.observe(this, Observer { loginData ->
-            signIn(loginData)
-        })
-
         viewModel.showEmailDialog.observe(this, Observer {
             showEmailDialog()
         })
@@ -91,22 +87,6 @@ class MainActivity : AppCompatActivity() {
         }
         alert.create()
         alert.show()
-    }
-
-    private fun signIn(loginData: MainViewModel.LoginData?) { // todo: Move to ViewModel in AlexFragment
-        loginData?: return
-        disposables.add(authenticationService.signInWithEmailAndPassword(loginData.email, loginData.password)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ user ->
-                    if (user != null){
-                        Toast.makeText(this, "Login successful", Toast.LENGTH_LONG).show()
-                    }
-                }, { error ->
-                    error.printStackTrace()
-                    Toast.makeText(this, "Login failed", Toast.LENGTH_LONG).show()
-
-                }))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -51,7 +51,7 @@
             android:layout_height="0dp"
             android:layout_margin="15dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/tan"
+            android:backgroundTint="@color/mediumTan"
             android:background="@drawable/button_background">
 
             <androidx.recyclerview.widget.RecyclerView

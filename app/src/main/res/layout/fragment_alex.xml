@@ -2,6 +2,15 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.cearleysoftware.byob.ui.viewmodels.AlexViewModel">
+        </variable>
+
+    </data>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -72,7 +81,7 @@
                     android:layout_height="wrap_content"
                     style="@style/ButtonAppearance"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/login"
+                    android:text="@{viewModel.loginButtonText}"
                     android:layout_marginBottom="56dp"/>
 
 

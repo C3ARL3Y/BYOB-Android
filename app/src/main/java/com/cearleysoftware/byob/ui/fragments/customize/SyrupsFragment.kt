@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.constants.SyrupNames
-import com.cearleysoftware.byob.extensions.getDimension
-import com.cearleysoftware.byob.extensions.inflateTo
-import com.cearleysoftware.byob.extensions.replaceFragment
-import com.cearleysoftware.byob.extensions.safeActivity
+import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.models.SyrupsData
 import com.cearleysoftware.byob.ui.adapters.SyrupsAdapter
 import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
@@ -47,7 +44,7 @@ class SyrupsFragment: Fragment() {
         backButton.setOnClickListener { safeActivity.onBackPressed() }
         nextButton.setOnClickListener {
             customDrinkViewModel.saveSyrups(syrupAdapter.list)
-            activity.replaceFragment(fragment = ExtrasFragment(), addToBackStack = true)
+            activity.addFragment(fragment = ExtrasFragment())
         }
     }
 

@@ -21,14 +21,8 @@ class MainViewModel: ViewModel() {
 
     val showEmailDialog = SingleLiveEvent<Unit>()
 
-    val login = SingleLiveEvent<LoginData>()
-
     fun navigateToImageGallery(onGalleryResult: (String, Uri) -> Unit){
         navigateToImageGallery.postValue(onGalleryResult)
-    }
-
-    fun login(email: String, password: String) {
-        login.postValue(LoginData(email, password))
     }
 
     fun showAddEmailDialog() {

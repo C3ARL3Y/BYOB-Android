@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cearleysoftware.byob.R
-import com.cearleysoftware.byob.extensions.inflateTo
-import com.cearleysoftware.byob.extensions.replaceFragment
-import com.cearleysoftware.byob.extensions.safeActivity
-import com.cearleysoftware.byob.extensions.showAlertDialog
+import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.ui.adapters.CoffeeBaseAdapter
 import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
@@ -53,7 +50,7 @@ class CoffeeBaseFragment: Fragment() {
         }
 
         customDrinkViewModel.navigateToMilks.observe(this, Observer {
-            safeActivity.replaceFragment(fragment = MilksFragment(), addToBackStack = true)
+            safeActivity.addFragment(fragment = MilksFragment())
         })
         customDrinkViewModel.showAlertDialog.observe(this, Observer { alertData ->
             safeActivity.showAlertDialog(alertData.title, alertData.message)

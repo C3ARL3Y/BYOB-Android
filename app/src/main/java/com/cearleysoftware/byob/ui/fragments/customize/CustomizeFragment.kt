@@ -40,7 +40,7 @@ class CustomizeFragment: Fragment() {
         }
         customizeDrinkButton.setOnClickListener {
             customDrinkViewModel.clearCustomDrink()
-            safeActivity.replaceFragment(fragment = CoffeeBaseFragment(), addToBackStack = true)
+            safeActivity.addFragment(fragment = CoffeeBaseFragment())
         }
         customDrinkViewModel.hasFavoriteDrinkToSave.observe(this, Observer { hasDrink ->
             if (hasDrink){
