@@ -85,7 +85,7 @@ class MainFragment: Fragment() {
             hideEnterNameView(view)
         }
 
-        cancel.setOnClickListener { hideEnterNameView(cancel) }
+        nameCancelButton.setOnClickListener { hideEnterNameView(nameCancelButton) }
 
         nameEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
