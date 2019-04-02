@@ -70,6 +70,10 @@ class MainFragment: Fragment() {
             safeActivity.showAlertDialog("Error", "Could not save drink to favorites")
         })
 
+        customDrinkViewModel.onDrinkSavedToFavorites.observe(this, Observer {
+            safeActivity.showToast("Drink saved")
+        })
+
         addToFavoriteButton.setOnClickListener {
             nameView.show()
             nameEditText.requestFocus()
