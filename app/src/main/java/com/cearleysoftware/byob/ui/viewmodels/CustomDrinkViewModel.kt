@@ -20,7 +20,6 @@ class CustomDrinkViewModel(private val customDrinkHelper: CustomDrinkHelper): Vi
     val onDrinkSavedToFavoritesFailed = SingleLiveEvent<Unit>()
     val navigateToMilks = SingleLiveEvent<Unit>()
     val showAlertDialog = SingleLiveEvent<AlertData>()
-    val showEnterCustomDrinkNameView = SingleLiveEvent<Unit>()
 
     private val disposables = CompositeDisposable()
 

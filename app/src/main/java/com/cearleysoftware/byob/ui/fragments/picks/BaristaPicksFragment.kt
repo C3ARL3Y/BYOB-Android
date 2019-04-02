@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.constants.DrinkTypes
+import com.cearleysoftware.byob.extensions.addFragment
 import com.cearleysoftware.byob.extensions.inflateTo
 import com.cearleysoftware.byob.extensions.replaceFragment
 import com.cearleysoftware.byob.extensions.safeActivity
@@ -29,21 +30,18 @@ class BaristaPicksFragment: Fragment() {
 
     private fun setupUI() {
         hotDrinks.setOnClickListener {
-            safeActivity.replaceFragment(
-                    fragment = ViewDrinksFragment.newInstance(DrinkTypes.HOT_DRINKS),
-                    addToBackStack = true
+            safeActivity.addFragment(
+                    fragment = ViewDrinksFragment.newInstance(DrinkTypes.HOT_DRINKS)
             )
         }
         icedDrinks.setOnClickListener {
-            safeActivity.replaceFragment(
-                    fragment = ViewDrinksFragment.newInstance(DrinkTypes.ICED_DRINKS),
-                    addToBackStack = true
+            safeActivity.addFragment(
+                    fragment = ViewDrinksFragment.newInstance(DrinkTypes.ICED_DRINKS)
             )
         }
         teas.setOnClickListener {
-            safeActivity.replaceFragment(
-                    fragment = ViewDrinksFragment.newInstance(DrinkTypes.TEAS),
-                    addToBackStack = true
+            safeActivity.addFragment(
+                    fragment = ViewDrinksFragment.newInstance(DrinkTypes.TEAS)
             )
         }
     }
