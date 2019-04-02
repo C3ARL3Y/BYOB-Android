@@ -60,39 +60,6 @@ class CustomizeFragment: Fragment() {
                 customizeDrinkButton.text = resources.getText(R.string.customize_drink)
             }
         })
-
-        customDrinkViewModel.showEnterCustomDrinkNameView.observe(this, Observer {
-            nameView.show()
-            nameEditText.requestFocus()
-        })
-
-        nameDoneButton.setOnClickListener { view ->
-            val name = nameEditText.text.toString().trim()
-            customDrinkViewModel.saveCustomDrinkToFavorites(name)
-            hideEnterNameView(view)
-        }
-
-        cancel.setOnClickListener { hideEnterNameView(cancel) }
-
-        nameEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
-                nameDoneButton.isEnabled = text.isNotBlank()
-            }
-        })
     }
 
-    private fun hideEnterNameView(view: View) {
-        nameEditText.setText("")
-        nameEditText.clearFocus()
-        val inputManager = safeActivity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputManager.hideSoftInputFromWindow(view.windowToken, 0)
-        nameView.hide()
-    }
 }

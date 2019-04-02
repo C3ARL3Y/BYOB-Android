@@ -1,10 +1,14 @@
 package com.cearleysoftware.byob.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
@@ -44,17 +48,53 @@ class MainFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUI()
+    }
+
+    private fun setupUI() {
         setupViewPager(viewpager)
         setupBottomNavigation(bottomNavigation, viewpager)
-        addToFavoriteButton.setOnClickListener {
-            customDrinkViewModel.showEnterCustomDrinkNameView.call()
-        }
-        customDrinkViewModel.onDrinkSavedToFavoritesFailed.observe(this, Observer {
-            safeActivity.showAlertDialog("Error", "Could not save drink to favorites")
-        })
         val mainActivity = safeActivity as MainActivity
         setupToolbar(mainActivity, toolbar, toolbarTitle)
         setupAd()
+        setupAddDrinkNameView()
+    }
+
+    private fun setupAddDrinkNameView() {
+
+        customDrinkViewModel.hasFavoriteDrinkToSave.observe(this, Observer { hasDrinkToSave ->
+            addToFavoriteButton.visibility = if(hasDrinkToSave) View.VISIBLE else View.GONE
+        })
+
+        customDrinkViewModel.onDrinkSavedToFavoritesFailed.observe(this, Observer {
+            safeActivity.showAlertDialog("Error", "Could not save drink to favorites")
+        })
+
+        addToFavoriteButton.setOnClickListener {
+            nameView.show()
+            nameEditText.requestFocus()
+        }
+
+        nameDoneButton.setOnClickListener { view ->
+            val name = nameEditText.text.toString().trim()
+            customDrinkViewModel.saveCustomDrinkToFavorites(name)
+            hideEnterNameView(view)
+        }
+
+        cancel.setOnClickListener { hideEnterNameView(cancel) }
+
+        nameEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
+                nameDoneButton.isEnabled = text.isNotBlank()
+            }
+        })
     }
 
     private fun setupAd() {
@@ -69,9 +109,6 @@ class MainFragment: Fragment() {
             setDisplayHomeAsUpEnabled(false)
         }
         toolbarTitle.text = resources.getText(R.string.barista_picks)
-        customDrinkViewModel.hasFavoriteDrinkToSave.observe(this, Observer { hasDrinkToSave ->
-            addToFavoriteButton.visibility = if(hasDrinkToSave) View.VISIBLE else View.GONE
-        })
     }
 
     private fun setupBottomNavigation(bottomNavigation: BottomNavigationView, viewPager: ViewPager) {
@@ -93,6 +130,14 @@ class MainFragment: Fragment() {
                 true
             }
         }
+    }
+
+    private fun hideEnterNameView(view: View) {
+        nameEditText.setText("")
+        nameEditText.clearFocus()
+        val inputManager = safeActivity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(view.windowToken, 0)
+        nameView.hide()
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
