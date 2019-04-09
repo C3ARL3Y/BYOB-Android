@@ -26,6 +26,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:orientation="vertical"
             android:layout_weight="1">
 
@@ -33,6 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:textColor="@color/darkBrown"
                 android:text="@{base}"
                 tools:text="Hot Coffee"/>
@@ -40,16 +43,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="Tall: 0 Calories"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="Grande: 0 Calories"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="Venti: 0 Calories"/>
 
         </LinearLayout>

@@ -2,9 +2,6 @@ package com.cearleysoftware.byob.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
-import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.cearleysoftware.byob.R
@@ -13,12 +10,9 @@ import com.cearleysoftware.byob.databinding.MainActivityBinding
 import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.images.GalleryManager
 import com.cearleysoftware.byob.network.api.AuthenticationService
-import com.cearleysoftware.byob.network.api.EmailService
 import com.cearleysoftware.byob.ui.fragments.MainFragment
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModel<MainViewModel>()
     private val galleryManager by inject<GalleryManager>()
     private val authenticationService by inject<AuthenticationService>()
-    private val emailService by inject<EmailService>()
     private val disposables = CompositeDisposable()
 
     private var binding: MainActivityBinding? = null
@@ -44,10 +37,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupUI() {
 
-        viewModel.showEmailDialog.observe(this, Observer {
-            showEmailDialog()
-        })
-
         viewModel.navigateToImageGallery.observe(this, Observer { onResult ->
             galleryManager.startGallery(this, onResult)
         })
@@ -55,38 +44,6 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(fragment = MainFragment())
 
 
-    }
-
-    private fun showEmailDialog() {
-        val alert = android.app.AlertDialog.Builder(this)
-        val edittext = EditText(this)
-        edittext.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-        edittext.requestFocus()
-        val padding = resources.displayMetrics.dpToPx(15)
-        edittext.setPadding(padding,padding,padding,padding)
-        alert.setTitle("Enter email")
-
-        alert.setView(edittext)
-
-        alert.setPositiveButton("Ok") { _, _ ->
-            val email = edittext.text.toString().trim()
-            if (email.isNotBlank()) {
-                disposables.add(emailService.sendEmail(email)// todo: Move to ViewModel in AlexFragment
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
-                            Toast.makeText(this, "Email sent", Toast.LENGTH_LONG).show()
-                        }, { error ->
-                            error.printStackTrace()
-                            Toast.makeText(this, "Error sending email", Toast.LENGTH_LONG).show()
-                        }))
-            }
-            else{
-                showToast("You must enter a valid email.")
-            }
-        }
-        alert.create()
-        alert.show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

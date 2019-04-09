@@ -1,20 +1,17 @@
 package com.cearleysoftware.byob.ui.fragments.alex
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.*
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.databinding.FragmentAlexBinding
-import com.cearleysoftware.byob.extensions.inflateWithBinding
-import com.cearleysoftware.byob.extensions.safeActivity
-import com.cearleysoftware.byob.extensions.showAlertDialog
-import com.cearleysoftware.byob.extensions.showToast
-import com.cearleysoftware.byob.network.api.AuthenticationService
+import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.ui.viewmodels.AlexViewModel
-import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_alex.*
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
@@ -22,7 +19,6 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class AlexFragment: Fragment() {
 
     private lateinit var binding: FragmentAlexBinding
-    private val mainViewModel by sharedViewModel<MainViewModel>()
     private val alexViewModel by sharedViewModel<AlexViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -41,8 +37,34 @@ class AlexFragment: Fragment() {
         login.setOnClickListener {
             val email = emailView.text.toString().trim()
             val password = passwordView.text.toString().trim()
-            alexViewModel.onLoginClicked(email, password)
+            when {
+                email.isBlank() -> safeActivity.showAlertDialog("Login error", "You must enter an email")
+                password.isBlank() -> safeActivity.showAlertDialog("Login error", "You must enter a password")
+                else -> alexViewModel.login(email, password)
+            }
         }
+
+        alexViewModel.showInvalidEmailToast.observe(this, Observer {
+            safeActivity.showToast("You must enter a valid email.")
+        })
+
+        alexViewModel.sendEmailSuccess.observe(this, Observer { success ->
+            if (success) {
+                safeActivity.showToast("Email sent")
+            }
+            else{
+                safeActivity.showToast("Error sending email")
+
+            }
+        })
+        alexViewModel.loginSuccess.observe(this, Observer { success ->
+            if (success){
+                safeActivity.showToast("Login successful")
+            }
+            else{
+                safeActivity.showToast("Login failed")
+            }
+        })
         alexViewModel.checkForLoggedInUser()
     }
 
@@ -58,8 +80,37 @@ class AlexFragment: Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.menu_item_sign_up -> mainViewModel.showAddEmailDialog()
+            R.id.menu_item_sign_up -> showEmailDialog()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showEmailDialog() {
+        val alertBuilder = android.app.AlertDialog.Builder(safeActivity)
+        val edittext = EditText(safeActivity)
+        edittext.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        edittext.requestFocus()
+        val padding = resources.displayMetrics.dpToPx(15)
+        edittext.setPadding(padding,padding,padding,padding)
+        alertBuilder.setTitle("Enter email")
+
+        alertBuilder.setView(edittext)
+
+        alertBuilder.setPositiveButton("Ok") { _, _ ->
+            val email = edittext.text.toString().trim()
+            alexViewModel.sendEmail(email)
+        }
+        val alert =alertBuilder.create()
+        alert.show()
+
+        edittext.setOnEditorActionListener { view, actionId, event ->
+
+            if (actionId == EditorInfo.IME_ACTION_DONE){
+                val email = view.text.toString().trim()
+                alexViewModel.sendEmail(email)
+                alert.cancel()
+            }
+            false
+        }
     }
 }

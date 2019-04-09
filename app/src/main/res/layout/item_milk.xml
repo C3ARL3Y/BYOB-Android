@@ -23,12 +23,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginStart="15dp"
             android:layout_weight="1">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:textColor="@color/darkBrown"
                 android:text="@{milk.milk}"
                 tools:text="Whole Milk: 2oz"/>
@@ -36,30 +39,40 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="@{@string/calories_text(milk.calories)}"
                 tools:text="Calories: 40.0g"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="@{@string/protein_text(milk.protein)}"
                 tools:text="Protein: 2.0g"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="@{@string/carbs_text(milk.carbs)}"
                 tools:text="Carbs: 3.0g"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="@{@string/fat_text(milk.fats)}"
                 tools:text="Fats: 2.0g"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="@{@string/sugar_text(milk.sugar)}"
                 tools:text="Sugar: 3.0g"/>
 

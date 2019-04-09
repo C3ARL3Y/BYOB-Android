@@ -38,12 +38,23 @@
                     android:layout_height="wrap_content"
                     tools:text="New Drink"
                     android:textSize="20sp"
+                    android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="@{favorite.name}"/>
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="Type"/>
+
+                <TextView
                     android:id="@+id/baseView"
                     android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimaryDark"
@@ -51,31 +62,70 @@
                     android:text="@{@string/favorite_field_text(favorite.base)}" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="Milk Servings"/>
+
+                <TextView
                     android:id="@+id/milksView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:textColor="@color/colorPrimaryDark"
                     app:setMilks="@{favorite.milks}"
                     tools:text="- 2% Milk\n- Coconut Milk"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="Syrup Servings"/>
 
                 <TextView
                     android:id="@+id/syrupsView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:textColor="@color/colorPrimaryDark"
                     app:setSyrups="@{favorite.syrups}"
                     tools:text="- Gingerbread: 1\n- Toffee Nut: 7"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="Extra"/>
 
                 <TextView
                     android:id="@+id/extrasView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="@{@string/favorite_field_text(favorite.extra)}"
                     tools:text="- Light Carmel Drizzle"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="Nutrition Facts"/>
 
                 <TextView
                     android:id="@+id/nutritionView"

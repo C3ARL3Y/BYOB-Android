@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">@color/darkTan</color>
     <color name="colorPrimaryDark">@color/mediumBrown</color>
-    <color name="colorAccent">@color/mediumTan</color>
+    <color name="colorAccent">@color/darkBrown</color>
     <color name="darkTan">#b79687</color>
     <color name="mediumTan">#d2b99a</color>
     <color name="lightTan">#f4dcb8</color>

@@ -18,11 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginStart="15dp"
             android:layout_weight="1">
 
             <TextView
@@ -31,35 +31,47 @@
                 android:textSize="18sp"
                 android:textColor="@color/darkBrown"
                 android:text="@{syrup.syrup}"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 tools:text="Whole Milk: 2oz"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{@string/calories_text(syrup.calories)}"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 tools:text="Calories: 40.0g"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="@{@string/protein_text(syrup.protein)}"
                 tools:text="Protein: 2.0g"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="@{@string/carbs_text(syrup.carbs)}"
                 tools:text="Carbs: 3.0g"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="@{@string/fat_text(syrup.fats)}"
                 tools:text="Fats: 2.0g"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="@{@string/sugar_text(syrup.sugar)}"
                 tools:text="Sugar: 3.0g"/>
 
