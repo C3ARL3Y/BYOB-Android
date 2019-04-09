@@ -25,4 +25,8 @@ val viewModelsModule = module {
     viewModel {
         CustomDrinkViewModel(get())
     }
+
+    viewModel {
+        AlexViewModel(get(), get())
+    }
 }

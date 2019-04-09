@@ -44,7 +44,6 @@ class FavoriteDetailsFragment: Fragment() {
         backButton.setOnClickListener { safeActivity.onBackPressed() }
     }
 
-
     companion object {
 
         fun newInstance(favorite: CustomDrink): FavoriteDetailsFragment{

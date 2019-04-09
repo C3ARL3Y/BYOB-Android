@@ -1,23 +1,15 @@
 package com.cearleysoftware.byob.ui.fragments.customize
 
-import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.cearleysoftware.byob.R
-import com.cearleysoftware.byob.databinding.FragmentCustomizeBinding
 import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.ui.fragments.favorites.FavoriteDetailsFragment
-import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
 import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
-import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_customize.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -43,12 +35,12 @@ class CustomizeFragment: Fragment() {
         currentDrinkButton.setOnClickListener {
             val drink = customDrinkViewModel.customizableDrinkToSave
             if (drink != null) {
-                safeActivity.replaceFragment(fragment = FavoriteDetailsFragment.newInstance(drink), addToBackStack = true)
+                safeActivity.addFragment(fragment = FavoriteDetailsFragment.newInstance(drink))
             }
         }
         customizeDrinkButton.setOnClickListener {
             customDrinkViewModel.clearCustomDrink()
-            safeActivity.replaceFragment(fragment = CoffeeBaseFragment(), addToBackStack = true)
+            safeActivity.addFragment(fragment = CoffeeBaseFragment())
         }
         customDrinkViewModel.hasFavoriteDrinkToSave.observe(this, Observer { hasDrink ->
             if (hasDrink){
