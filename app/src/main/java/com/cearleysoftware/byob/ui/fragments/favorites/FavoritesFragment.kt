@@ -50,6 +50,7 @@ class FavoritesFragment: Fragment() {
         favoritesViewModel.onGetFavoritesResult.observe(this, Observer { results ->
             favoritesAdapter.updateData(results)
         })
+
         favoritesViewModel.onGetFavoritesError.observe(this, Observer {
             safeActivity.showAlertDialog("Error", "Could not load favorites")
         })
