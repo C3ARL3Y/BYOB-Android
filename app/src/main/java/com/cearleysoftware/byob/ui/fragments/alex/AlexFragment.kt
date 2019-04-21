@@ -103,7 +103,7 @@ class AlexFragment: Fragment() {
         val alert =alertBuilder.create()
         alert.show()
 
-        edittext.setOnEditorActionListener { view, actionId, event ->
+        edittext.setOnEditorActionListener { view, actionId, _ ->
 
             if (actionId == EditorInfo.IME_ACTION_DONE){
                 val email = view.text.toString().trim()

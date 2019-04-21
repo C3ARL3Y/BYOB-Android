@@ -17,7 +17,7 @@ class RecyclerItemLongClickListener(
     }
 
     override fun onChildViewAttachedToWindow(view: View) {
-        view.setOnLongClickListener { view ->
+        view.setOnLongClickListener {
             setOnChildAttachedToWindow(view)
             true
         }

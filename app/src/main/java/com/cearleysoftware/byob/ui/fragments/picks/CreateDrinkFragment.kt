@@ -75,6 +75,7 @@ class CreateDrinkFragment: Fragment() {
             }
         }
         saveButton.setOnClickListener {
+            progress.show()
             createDrinkViewModel.saveDrink(
                     drink.id,
                 nameView.text.toString(),
@@ -110,10 +111,15 @@ class CreateDrinkFragment: Fragment() {
             }
         })
 
-        createDrinkViewModel.onDrinkSaved.observe(this, Observer {
-            safeActivity.onBackPressed()
+        createDrinkViewModel.onDrinkSaved.observe(this, Observer { event ->
+            if (event.getContentIfNotHandled() != null) {
+                progress.hide()
+                createDrinkViewModel.loadDrinks(drink.type)
+                safeActivity.onBackPressed()
+            }
         })
         createDrinkViewModel.onDrinkSaveFailed.observe(this, Observer {
+            progress.hide()
             safeActivity.showAlertDialog("Error", "Could not save drink.")
         })
         binding.drink = drink

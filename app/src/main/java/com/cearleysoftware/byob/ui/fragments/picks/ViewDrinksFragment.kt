@@ -14,12 +14,9 @@ import com.cearleysoftware.byob.constants.DrinkTypes
 import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.models.Drink
 import com.cearleysoftware.byob.network.api.AuthenticationService
-import com.cearleysoftware.byob.network.api.DrinksService
 import com.cearleysoftware.byob.ui.adapters.DrinkSearchAdapter
 import com.cearleysoftware.byob.ui.viewmodels.CreateDrinkViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_view_drinks.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -28,7 +25,6 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ViewDrinksFragment: Fragment() {
 
-    private val drinksService by inject<DrinksService>()
     private val authenticationService by inject<AuthenticationService>()
     private val createDrinkViewModel by sharedViewModel<CreateDrinkViewModel>()
     private val disposables = CompositeDisposable()
@@ -57,7 +53,8 @@ class ViewDrinksFragment: Fragment() {
 
     override fun onStart() {
         super.onStart()
-        loadDrinks()
+        progress.show()
+        createDrinkViewModel.loadDrinks(drinkType)
     }
 
     private fun setupUI() {
@@ -67,9 +64,8 @@ class ViewDrinksFragment: Fragment() {
             adapter = drinksAdapter
             addOnItemClick { position, _ ->
                 val drink = drinksAdapter.getSongForPosition(position)
-                safeActivity.replaceFragment(
-                        fragment = DrinkFragment.newInstance(drink),
-                        addToBackStack = true
+                safeActivity.addFragment(
+                        fragment = DrinkFragment.newInstance(drink)
                 )
             }
 
@@ -83,9 +79,8 @@ class ViewDrinksFragment: Fragment() {
         if (isLoggedIn) {
             newDrinkButton.show()
             newDrinkButton.setOnClickListener {
-                safeActivity.replaceFragment(
-                        fragment = CreateDrinkFragment.newInstance(Drink(type = drinkType)),
-                        addToBackStack = true
+                safeActivity.addFragment(
+                        fragment = CreateDrinkFragment.newInstance(Drink(type = drinkType))
                 )
             }
         }
@@ -95,36 +90,29 @@ class ViewDrinksFragment: Fragment() {
         doneButton.setOnClickListener { safeActivity.onBackPressed() }
 
         createDrinkViewModel.navigateToCreateDrink.observe(this, Observer { drink ->
-            safeActivity.replaceFragment(
-                    fragment = CreateDrinkFragment.newInstance(drink),
-                    addToBackStack = true
+            safeActivity.addFragment(
+                    fragment = CreateDrinkFragment.newInstance(drink)
             )
         })
 
         createDrinkViewModel.onDrinkRemoved.observe(this, Observer {
             safeActivity.showToast("Drink removed")
-            loadDrinks()
+            progress.show()
+            createDrinkViewModel.loadDrinks(drinkType)
         })
+
         createDrinkViewModel.onDrinkRemoveFailed.observe(this, Observer {
             safeActivity.showToast("Unable to remove drink")
         })
 
-        searchView.setOnClickListener { safeActivity.addFragment(fragment = SearchFragment.newInstance(drinkType)) }
-    }
+        createDrinkViewModel.onLoadDrinksResult.observe(this, Observer { event ->
+            event.getContentIfNotHandled()?.let { drinks ->
+                progress.hide()
+                drinksAdapter.updateData(drinks)
+            }
+        })
 
-    private fun loadDrinks() {
-        disposables.add(drinksService.getDrinks(drinkType)
-                .subscribeOn(Schedulers.io())
-                .doOnSubscribe {
-                    progress.visibility = View.VISIBLE
-                }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ drinks ->
-                    progress.visibility = View.GONE
-                    drinksAdapter.updateData(drinks)
-                }, { error ->
-                    error.printStackTrace()
-                }))
+        searchView.setOnClickListener { safeActivity.addFragment(fragment = SearchFragment.newInstance(drinkType)) }
     }
 
     override fun onDestroy() {

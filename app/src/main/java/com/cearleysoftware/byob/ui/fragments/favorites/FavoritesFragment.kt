@@ -39,7 +39,7 @@ class FavoritesFragment: Fragment() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(safeActivity)
             adapter = favoritesAdapter
-            addOnItemClick { position, view ->
+            addOnItemClick { position, _ ->
                 val favorite = favoritesAdapter.getFavoriteForPosition(position)
                 safeActivity.addFragment(
                         fragment = FavoriteDetailsFragment.newInstance(favorite)
@@ -50,7 +50,7 @@ class FavoritesFragment: Fragment() {
         favoritesViewModel.onGetFavoritesResult.observe(this, Observer { results ->
             favoritesAdapter.updateData(results)
         })
-        favoritesViewModel.onGetFavoritesError.observe(this, Observer { error ->
+        favoritesViewModel.onGetFavoritesError.observe(this, Observer {
             safeActivity.showAlertDialog("Error", "Could not load favorites")
         })
 
