@@ -10,6 +10,7 @@ import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.extensions.inflateTo
 import com.cearleysoftware.byob.extensions.popAllInBackStack
 import com.cearleysoftware.byob.extensions.safeActivity
+import com.cearleysoftware.byob.extensions.showAlertDialog
 import com.cearleysoftware.byob.models.ExtrasData
 import com.cearleysoftware.byob.ui.adapters.ExtrasAdapter
 import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
@@ -52,8 +53,13 @@ class ExtrasFragment: Fragment() {
 
         nextButton.setOnClickListener {
             val index = extrasAdapter.lastSelectedIndex
-            customDrinkViewModel.storeExtra(index, stringArray)
-            safeActivity.popAllInBackStack()
+            if (index < 0){
+                safeActivity.showAlertDialog("", "Please select extra.")
+            }
+            else {
+                customDrinkViewModel.storeExtra(index, stringArray)
+                safeActivity.popAllInBackStack()
+            }
         }
     }
 
