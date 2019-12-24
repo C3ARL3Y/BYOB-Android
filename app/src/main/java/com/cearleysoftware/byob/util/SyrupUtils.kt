@@ -17,8 +17,7 @@ object SyrupUtils{
             val list = ArrayList<SyrupsData>()
             for (syrup in array) {
                 val syrupData = SyrupsData(syrup = syrup)
-                val syrupName = syrupData.syrup
-                when(syrupName){
+                when(syrupData.syrup){
                     SyrupNames.VANILLA -> addVanillaAttributes(context, syrupData)
                     SyrupNames.CARAMEL -> addCaramelAttributes(context, syrupData)
                     SyrupNames.HAZELNUT -> addHazelnutAttributes(context, syrupData)

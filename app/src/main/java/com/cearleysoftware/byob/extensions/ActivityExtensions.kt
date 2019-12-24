@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.cearleysoftware.byob.R
+import kotlin.math.roundToInt
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
 
@@ -91,5 +92,5 @@ fun Activity.showToast(message: String){
 }
 
 fun DisplayMetrics.dpToPx(dp: Int): Int {
-    return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), this ))
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), this).roundToInt()
 }
