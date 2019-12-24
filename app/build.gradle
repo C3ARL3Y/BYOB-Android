@@ -76,7 +76,7 @@ dependencies {
 
     implementation "com.google.firebase:firebase-core:${versions.firebase}"
     implementation "com.google.firebase:firebase-database:${versions.firebaseDatabase}"
-    implementation "com.google.firebase:firebase-storage:${versions.firebaseDatabase}"
+    implementation "com.google.firebase:firebase-storage:${versions.firebaseStorage}"
     implementation "com.google.firebase:firebase-auth:${versions.firebaseAuthentication}"
     implementation "com.google.firebase:firebase-ads:${versions.firebaseAdMob}"
 

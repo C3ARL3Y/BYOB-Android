@@ -3,14 +3,13 @@ package com.cearleysoftware.byob.ui.fragments
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -19,20 +18,17 @@ import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.extensions.*
-import com.cearleysoftware.byob.ui.activities.MainActivity
 import com.cearleysoftware.byob.ui.fragments.alex.AlexFragment
 import com.cearleysoftware.byob.ui.fragments.customize.CustomizeFragment
 import com.cearleysoftware.byob.ui.fragments.favorites.FavoritesFragment
 import com.cearleysoftware.byob.ui.fragments.picks.BaristaPicksFragment
 import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
-import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import com.google.android.gms.ads.AdRequest
 import kotlinx.android.synthetic.main.view_add.*
-
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
 
@@ -54,13 +50,10 @@ class MainFragment: Fragment() {
     private fun setupUI() {
         setupViewPager(viewpager)
         setupBottomNavigation(bottomNavigation, viewpager)
-        val mainActivity = safeActivity as MainActivity
-        setupToolbar(mainActivity, toolbar, toolbarTitle)
-        setupAd()
-        setupAddDrinkNameView()
-    }
+        setupToolbar(safeActivity as AppCompatActivity, toolbar, toolbarTitle)
 
-    private fun setupAddDrinkNameView() {
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         customDrinkViewModel.hasFavoriteDrinkToSave.observe(this, Observer { hasDrinkToSave ->
             addToFavoriteButton.visibility = if(hasDrinkToSave) View.VISIBLE else View.GONE
@@ -101,14 +94,10 @@ class MainFragment: Fragment() {
         })
     }
 
-    private fun setupAd() {
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
-    }
 
-    private fun setupToolbar(mainActivity: MainActivity, toolbar: Toolbar, toolbarTitle: TextView) {
-        mainActivity.setSupportActionBar(toolbar)
-        mainActivity.supportActionBar?.run {
+    private fun setupToolbar(activity: AppCompatActivity, toolbar: Toolbar, toolbarTitle: TextView) {
+        activity.setSupportActionBar(toolbar)
+        activity.supportActionBar?.run {
             setDisplayShowTitleEnabled(false)
             setDisplayHomeAsUpEnabled(false)
         }
