@@ -30,7 +30,7 @@
                 tools:text="Woop Ass"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDark"
                 android:text="@{drink.name}"/>
 
         </FrameLayout>
@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:textSize="18sp"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
                         android:text="Description:"/>
 
@@ -73,7 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@{drink.description}"/>
 
                 </LinearLayout>
@@ -88,7 +88,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:textSize="18sp"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
                         android:text="Nutrition Facts:"/>
 
@@ -96,7 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorPrimaryDark"
                         app:nutrients="@{drink.nutrients}"/>
 
                 </LinearLayout>
@@ -111,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:textSize="18sp"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
                         android:text="How To Order:"/>
 
@@ -119,7 +119,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorPrimaryDark"
                         app:steps="@{drink.steps}">
 
                     </TextView>

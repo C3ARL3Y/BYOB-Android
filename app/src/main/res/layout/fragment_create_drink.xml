@@ -13,110 +13,134 @@
 
     </data>
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@android:color/white">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/nameView"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/nameView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:padding="15dp"
+                    android:gravity="center"
+                    android:text="@{drink.name}"
+                    android:hint="@string/name"
+                    android:textColor="@color/colorPrimaryDark"
+                    tools:text="Coffee"
+                    android:lines="1"
+                    android:inputType="textCapSentences"
+                    android:background="@drawable/edit_text_background"/>
+
+                <FrameLayout
+                    android:layout_width="164dp"
+                    android:layout_height="164dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/edit_text_background">
+
+                    <ImageView
+                        android:id="@+id/drinkImageView"
+                        android:layout_width="144dp"
+                        android:layout_height="144dp"
+                        android:layout_gravity="center"
+                        app:imageUrl="@{drink.imageURL}"
+                        tools:src="@drawable/alex"/>
+
+                </FrameLayout>
+
+                <EditText
+                    android:id="@+id/discriptionView"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_margin="15dp"
+                    android:gravity="top"
+                    tools:text="Kick ass coffee"
+                    android:inputType="textCapSentences"
+                    android:text="@{drink.description}"
+                    android:hint="@string/description"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:padding="15dp"
+                    android:background="@drawable/edit_text_background"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/nutrientsButton"
+                        android:layout_width="116dp"
+                        android:layout_height="wrap_content"
+                        style="@style/ButtonAppearance"
+                        android:text="Nutrients"/>
+
+                    <Button
+                        android:id="@+id/stepsButton"
+                        android:layout_width="116dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        style="@style/ButtonAppearance"
+                        android:text="Steps"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/backButton"
+                        android:layout_width="116dp"
+                        android:layout_height="wrap_content"
+                        style="@style/ButtonAppearance"
+                        android:text="Back"/>
+
+                    <Button
+                        android:id="@+id/saveButton"
+                        android:layout_width="116dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        style="@style/ButtonAppearance"
+                        android:text="Save"/>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <FrameLayout
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:visibility="invisible">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:padding="15dp"
-                android:gravity="center"
-                android:text="@{drink.name}"
-                android:hint="@string/name"
-                android:textColor="@color/colorPrimaryDark"
-                tools:text="Coffee"
-                android:lines="1"
-                android:background="@drawable/edit_text_background"/>
+                android:layout_gravity="center"/>
 
-            <FrameLayout
-                android:layout_width="164dp"
-                android:layout_height="164dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/edit_text_background">
-
-                <ImageView
-                    android:id="@+id/drinkImageView"
-                    android:layout_width="144dp"
-                    android:layout_height="144dp"
-                    android:layout_gravity="center"
-                    app:imageUrl="@{drink.imageURL}"
-                    tools:src="@drawable/alex"/>
-
-            </FrameLayout>
-
-            <EditText
-                android:id="@+id/discriptionView"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_margin="15dp"
-                android:gravity="top"
-                tools:text="Kick ass coffee"
-                android:text="@{drink.description}"
-                android:hint="@string/description"
-                android:textColor="@color/colorPrimaryDark"
-                android:padding="15dp"
-                android:background="@drawable/edit_text_background"/>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="15dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/nutrientsButton"
-                    android:layout_width="116dp"
-                    android:layout_height="wrap_content"
-                    style="@style/ButtonAppearance"
-                    android:text="Nutrients"/>
-
-                <Button
-                    android:id="@+id/stepsButton"
-                    android:layout_width="116dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    style="@style/ButtonAppearance"
-                    android:text="Steps"/>
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="15dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/backButton"
-                    android:layout_width="116dp"
-                    android:layout_height="wrap_content"
-                    style="@style/ButtonAppearance"
-                    android:text="Back"/>
-
-                <Button
-                    android:id="@+id/saveButton"
-                    android:layout_width="116dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    style="@style/ButtonAppearance"
-                    android:text="Save"/>
-
-            </FrameLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
+        </FrameLayout>
+    </FrameLayout>
 
 </layout>

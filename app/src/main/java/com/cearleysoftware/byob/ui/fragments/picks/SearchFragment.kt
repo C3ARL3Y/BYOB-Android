@@ -55,7 +55,7 @@ class SearchFragment: Fragment() {
             drinksAdapter.updateData(drinks)
         })
 
-        searchViewModel.onSearchResultError.observe(this, Observer { error ->
+        searchViewModel.onSearchResultError.observe(this, Observer {
             safeActivity.showAlertDialog("Error", "Unable to search drinks.")
         })
 

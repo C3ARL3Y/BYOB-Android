@@ -54,4 +54,8 @@ class CustomizeFragment: Fragment() {
         })
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
 }

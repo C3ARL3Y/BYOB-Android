@@ -12,7 +12,6 @@ import com.cearleysoftware.byob.images.GalleryManager
 import com.cearleysoftware.byob.network.api.AuthenticationService
 import com.cearleysoftware.byob.ui.fragments.MainFragment
 import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
-import io.reactivex.disposables.CompositeDisposable
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,7 +22,6 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModel<MainViewModel>()
     private val galleryManager by inject<GalleryManager>()
     private val authenticationService by inject<AuthenticationService>()
-    private val disposables = CompositeDisposable()
 
     private var binding: MainActivityBinding? = null
 
@@ -42,8 +40,6 @@ class MainActivity : AppCompatActivity() {
         })
 
         replaceFragment(fragment = MainFragment())
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -81,7 +77,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         galleryManager.onDestroy()
-        disposables.clear()
         authenticationService.detach()
     }
 }

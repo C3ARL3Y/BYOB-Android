@@ -11,13 +11,12 @@ import com.cearleysoftware.byob.R
 import com.cearleysoftware.byob.extensions.*
 import com.cearleysoftware.byob.ui.adapters.CoffeeBaseAdapter
 import com.cearleysoftware.byob.ui.viewmodels.CustomDrinkViewModel
-import com.cearleysoftware.byob.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_coffee_base.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 //  Copyright © 2019 Cearley Software. All rights reserved.
 
-class CoffeeBaseFragment: Fragment() {
+class CoffeeBaseFragment: Fragment(){
 
     private lateinit var coffeeBaseAdapter: CoffeeBaseAdapter
     private val customDrinkViewModel by sharedViewModel<CustomDrinkViewModel>()
